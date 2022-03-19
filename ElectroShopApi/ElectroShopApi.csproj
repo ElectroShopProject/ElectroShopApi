@@ -6,8 +6,12 @@
 
   <ItemGroup>
     <None Remove="Domain\" />
+    <None Remove="RestSharp" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Domain\" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="RestSharp" Version="107.3.0" />
   </ItemGroup>
 </Project>
