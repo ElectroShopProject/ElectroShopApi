@@ -1,8 +1,10 @@
 ﻿using System;
 namespace ElectroShopApi
 {
-    public record ProductCategory(string Name)
+    public enum ProductCategory
     {
-        public Guid Id { get; init; } = Guid.NewGuid();
+        Telecommunication,
+        Computers,
+        Others
     }
 }

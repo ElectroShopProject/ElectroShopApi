@@ -4,8 +4,8 @@ using ElectroShopApi.Domain;
 
 namespace ElectroShopApi
 {
-    public class Cart
+    public record Cart(List<Product> Products)
     {
-        public List<Product> FirstName { get; init; }
+        public Guid Guid { get; init; } = Guid.NewGuid();
     }
 }
