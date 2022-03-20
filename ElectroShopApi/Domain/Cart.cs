@@ -6,6 +6,6 @@ namespace ElectroShopApi
 {
     public record Cart(List<Product> Products)
     {
-        public Guid Guid { get; init; } = Guid.NewGuid();
+        public Guid Id { get; init; } = Guid.NewGuid();
     }
 }
