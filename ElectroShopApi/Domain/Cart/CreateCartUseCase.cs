@@ -14,7 +14,15 @@ namespace ElectroShopApi
 
         public static Cart Call(List<Cart> carts, User user)
         {
-            return new Cart(Products: new List<Product>());
+            // Don't allow to create a new cart for the same user
+            Cart cart = carts.Find((Cart obj) => obj.User == user);
+
+            if (cart != null)
+            {
+                return cart;
+            }
+
+            return new Cart(User: user, Products: new List<Product>());
         }
     }
 }
