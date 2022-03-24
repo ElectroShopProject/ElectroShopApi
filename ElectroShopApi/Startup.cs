@@ -21,6 +21,7 @@ namespace ElectroShopApi
         {
 
             services.AddControllers();
+            services.AddSingleton<UserService>();
             services.AddSingleton<CartService>();
         }
 

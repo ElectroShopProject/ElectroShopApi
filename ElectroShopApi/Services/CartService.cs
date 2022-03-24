@@ -3,34 +3,36 @@ using System.Collections.Generic;
 using ElectroShopApi.Domain;
 using ElectroShopApi.Domain.User;
 
-// TODO Resolve problem if use objects for use cases or only id as ref!
-
+// TODO This is only a temp solution. This should be replaced with Repo
 #nullable enable
 namespace ElectroShopApi.Services
 {
     public class CartService
     {
-        // In future replace with repository
-        private readonly List<Cart> Carts = new List<Cart>();
+        private readonly List<Cart> Carts = new();
+        private readonly UserService _userService;
 
-        public CartService() { }
+        public CartService(UserService userService)
+        {
+            _userService = userService;
+        }
 
         public Cart? GetCart(Guid id)
         {
             return GetCartUseCase.Call(Carts, id);
         }
 
-        public Cart CreateCart(User user)
+        public Cart CreateCart(Guid userId)
         {
-            return CreateCartUseCase.Call(Carts, user);
+            var user =
+            return CreateCartUseCase.Call(Carts, userId);
         }
 
-        public bool AddProduct(Product Product)
+        public bool AddProduct(Cart cart, Guid productId)
         {
             try
             {
-
-                return true;
+                return AddProductToCartUseCase.Call(cart, productId);
             }
             catch (Exception)
             {

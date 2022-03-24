@@ -1,5 +1,4 @@
 ﻿using System;
-using ElectroShopApi.Domain;
 using ElectroShopApi.Services;
 using Microsoft.AspNetCore.Mvc;
 
@@ -12,7 +11,7 @@ namespace ElectroShopApi
     public class CartController : ControllerBase
     {
 
-        private CartService _cartService;
+        private readonly CartService _cartService;
 
         public CartController(CartService cartService)
         {
@@ -21,11 +20,10 @@ namespace ElectroShopApi
 
         // POST /cart
         [HttpPost]
-        public Cart Post(String Username)
+        public Cart Post(Guid userId)
         {
-
+            _cartService.CreateCart();
         }
-
 
 
         //// GET /cart/id
