@@ -1,10 +1,12 @@
 ﻿using System;
+using ElectroShopApi.Requests.Cart;
 using ElectroShopApi.Services;
 using Microsoft.AspNetCore.Mvc;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 // TODO Implement adding product to cart :)
+#nullable enable
 namespace ElectroShopApi
 {
     [Route("cart")]
@@ -20,19 +22,18 @@ namespace ElectroShopApi
 
         // POST /cart
         [HttpPost]
-        public Cart Post(Guid userId)
+        public Cart Post([FromBody] CreateCartRequest request)
         {
-            _cartService.CreateCart();
+            return _cartService.CreateCart(request.userId);
         }
 
 
-        //// GET /cart/id
-        //[HttpGet("{id}")]
-        //public string Get(Guid id)
-        //{
-        //    // TODO Return cart
-        //    return "value";
-        //}
+        // GET /cart/id
+        [HttpGet("{id}")]
+        public Cart? Get(Guid id)
+        {
+            return _cartService.GetCart(id);
+        }
 
         //// POST api/values
         //[HttpPost]

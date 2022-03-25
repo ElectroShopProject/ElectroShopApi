@@ -8,10 +8,16 @@
     <None Remove="Domain\" />
     <None Remove="Domain\Cart\" />
     <None Remove="Domain\User\" />
+    <None Remove="Requests\" />
+    <None Remove="Requests\Cart\" />
+    <None Remove="Extensions\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Domain\" />
     <Folder Include="Domain\Cart\" />
     <Folder Include="Domain\User\" />
+    <Folder Include="Requests\" />
+    <Folder Include="Requests\Cart\" />
+    <Folder Include="Extensions\" />
   </ItemGroup>
 </Project>

@@ -14,7 +14,7 @@ namespace ElectroShopApi
         internal User GetUser(Guid userId)
         {
             // TODO In future allow more users
-            return CurrentUser;
+            return CurrentUser with { Id = userId };
         }
     }
 }
