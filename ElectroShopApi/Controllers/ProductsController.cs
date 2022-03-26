@@ -10,7 +10,7 @@ namespace ElectroShopApi.Controllers
     {
 
         private static readonly Product[] ProductList = new[] {
-            new Product("Phone", Category: new ProductCategory("Telecommunication"))
+            new Product("Phone", Category: ProductCategory.Telecommunication)
         };
 
 

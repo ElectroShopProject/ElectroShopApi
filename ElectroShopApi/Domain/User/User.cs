@@ -1,7 +1,8 @@
 ﻿using System;
-namespace ElectroShopApi
+namespace ElectroShopApi.Domain.User
 {
-    public record ProductCategory(string Name)
+
+    public record User(string Name)
     {
         public Guid Id { get; init; } = Guid.NewGuid();
     }
