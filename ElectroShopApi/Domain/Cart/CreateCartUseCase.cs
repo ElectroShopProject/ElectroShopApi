@@ -9,10 +9,9 @@ namespace ElectroShopApi
     {
         public CreateCartUseCase()
         {
-
         }
 
-        public static Cart Call(List<Cart> carts, User user)
+        public static Cart Create(List<Cart> carts, User user)
         {
             // Don't allow to create a new cart for the same user
             Cart cart = carts.Find((Cart obj) => obj.User == user);

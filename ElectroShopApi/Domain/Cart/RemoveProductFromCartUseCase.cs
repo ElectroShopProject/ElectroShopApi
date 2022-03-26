@@ -2,17 +2,17 @@
 
 namespace ElectroShopApi
 {
-    public class AddProductToCartUseCase
+    public class RemoveProductFromCartUseCase
     {
 
-        public AddProductToCartUseCase()
+        public RemoveProductFromCartUseCase()
         {
         }
 
-        public static Cart Add(Cart cart, Product product)
+        public static Cart Remove(Cart cart, Product product)
         {
             var currentProducts = cart.Products;
-            currentProducts.Add(product);
+            currentProducts.Remove(product);
             return cart with { Products = currentProducts };
         }
     }

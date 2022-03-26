@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 
-// TODO This is only a temp solution. This should be replaced with Repo
 #nullable enable
 namespace ElectroShopApi.Services
 {
@@ -26,16 +25,27 @@ namespace ElectroShopApi.Services
         {
             var user = _userService.GetUser(userId);
             // The set has problem that can contain other carts with the same ID
-            var newCart = CreateCartUseCase.Call(Carts.Values(), user);
+            var newCart = CreateCartUseCase.Create(Carts.Values(), user);
             Carts.Add(newCart);
             return newCart;
         }
 
-        public bool AddProduct(Cart cart, Guid productId)
+        public Cart AddProduct(Guid cartId, Guid productId)
         {
+            var cart = GetCart(cartId);
+
             var product = _productService.GetProduct(productId);
-            var updatedCart = AddProductToCartUseCase.Call(cart, product);
-            return updatedCart.Products.Contains(product);
+            var updatedCart = AddProductToCartUseCase.Add(cart, product);
+            return updatedCart;
+        }
+
+        public Cart RemoveProduct(Guid cartId, Guid productId)
+        {
+            var cart = GetCart(cartId);
+
+            var product = _productService.GetProduct(productId);
+            var updatedCart = RemoveProductFromCartUseCase.Remove(cart, product);
+            return updatedCart;
         }
     }
 }

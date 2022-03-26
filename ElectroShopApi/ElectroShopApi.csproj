@@ -11,6 +11,7 @@
     <None Remove="Requests\" />
     <None Remove="Requests\Cart\" />
     <None Remove="Extensions\" />
+    <None Remove="Domain\Product\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Domain\" />
@@ -19,5 +20,6 @@
     <Folder Include="Requests\" />
     <Folder Include="Requests\Cart\" />
     <Folder Include="Extensions\" />
+    <Folder Include="Domain\Product\" />
   </ItemGroup>
 </Project>
