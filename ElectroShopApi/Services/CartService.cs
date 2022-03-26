@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using ElectroShopApi.Domain;
 
 #nullable enable
 namespace ElectroShopApi.Services
@@ -24,10 +25,14 @@ namespace ElectroShopApi.Services
         public Cart CreateCart(Guid userId)
         {
             var user = _userService.GetUser(userId);
-            // The set has problem that can contain other carts with the same ID
             var newCart = CreateCartUseCase.Create(Carts.Values(), user);
             Carts.Add(newCart);
             return newCart;
+        }
+
+        public List<Product> GetProducts(Guid id)
+        {
+            return GetCart(id)?.Products ?? new List<Product>();
         }
 
         public Cart AddProduct(Guid cartId, Guid productId)
@@ -46,6 +51,12 @@ namespace ElectroShopApi.Services
             var product = _productService.GetProduct(productId);
             var updatedCart = RemoveProductFromCartUseCase.Remove(cart, product);
             return updatedCart;
+        }
+
+        public bool DeleteCart(Guid id)
+        {
+            var elementsRemoved = Carts.RemoveWhere((cart) => cart.Id == id);
+            return elementsRemoved > 0;
         }
     }
 }

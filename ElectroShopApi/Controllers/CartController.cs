@@ -36,7 +36,7 @@ namespace ElectroShopApi
             return _cartService.GetCart(id);
         }
 
-        // POST /cart/products
+        // POST /cart/id/products
         [Route("/products")]
         [HttpGet("{id}")]
         public List<Product> GetProducts(Guid id)
@@ -61,29 +61,11 @@ namespace ElectroShopApi
         }
 
 
-        //// POST api/values
-        //[HttpPost]
-        //public void Post([FromBody] string value)
-        //{
-        //    // TODO Implement
-        //}
-
-        //// PUT /cart/id
-        //[HttpPut("{id}")]
-        //public Cart Put()
-        //{
-        //    _cartService.AddProduct(new Product(
-        //        Name: "New product",
-        //        Category: ProductCategory.Others
-        //    ));
-        //    return _cartService.GetCart(Guid: Guid.NewGuid());
-        //}
-
-        //// DELETE /cart/id
-        //[HttpDelete("{id}")]
-        //public void Delete(int id)
-        //{
-        //    // TODO Implement
-        //}
+        // DELETE /cart/id
+        [HttpDelete("{id}")]
+        public void Delete(Guid id)
+        {
+            _cartService.DeleteCart(id);
+        }
     }
 }
