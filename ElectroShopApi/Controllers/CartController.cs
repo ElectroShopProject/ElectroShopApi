@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using ElectroShopApi.Domain;
 using ElectroShopApi.Requests.Cart;
 using ElectroShopApi.Services;
 using Microsoft.AspNetCore.Mvc;
@@ -23,49 +21,77 @@ namespace ElectroShopApi
 
         // POST /cart
         [HttpPost]
-        public Cart Post([FromBody] CreateCartRequest request)
+        public IActionResult Post([FromBody] CreateCartRequest request)
         {
-            return _cartService.CreateCart(request.userId);
+            return new JsonResult(_cartService.CreateCart(request.userId));
         }
-
 
         // GET /cart/id
         [HttpGet("{id}")]
-        public Cart? Get(Guid id)
+        public IActionResult Get(Guid id)
         {
-            return _cartService.GetCart(id);
+            return new JsonResult(_cartService.GetCart(id));
         }
 
         // POST /cart/id/products
-        [Route("/products")]
-        [HttpGet("{id}")]
-        public List<Product> GetProducts(Guid id)
+        [HttpGet("{id}/products")]
+        public IActionResult GetProducts(Guid id)
         {
-            return _cartService.GetProducts(id);
+            return new JsonResult(_cartService.GetProducts(id));
         }
 
         // POST /cart/products/add
-        [Route("/products/add")]
+        [Route("products/add")]
         [HttpPost]
-        public Cart AddProduct([FromBody] AddProductToCartRequest request)
+        public IActionResult AddProduct([FromBody] AddProductToCartRequest request)
         {
-            return _cartService.AddProduct(request.cartId, request.productId);
+            try
+            {
+                Cart cart = _cartService.AddProduct(
+                    request.cartId,
+                    request.productId
+                );
+                return new JsonResult(cart);
+            }
+            catch (NullReferenceException)
+            {
+                return new NotFoundResult();
+            }
+            catch
+            {
+                return new BadRequestResult();
+            }
         }
 
         // POST /cart/products/remove
-        [Route("/products/remove")]
+        [Route("products/remove")]
         [HttpPost]
-        public Cart RemoveProduct([FromBody] RemoveProductFromCartRequest request)
+        public IActionResult RemoveProduct([FromBody] RemoveProductFromCartRequest request)
         {
-            return _cartService.RemoveProduct(request.cartId, request.productId);
+            try
+            {
+                Cart cart = _cartService.RemoveProduct(
+                    request.cartId,
+                    request.productId
+                );
+                return new JsonResult(cart);
+            }
+            catch (NullReferenceException)
+            {
+                return new NotFoundResult();
+            }
+            catch
+            {
+                return new BadRequestResult();
+            }
         }
-
 
         // DELETE /cart/id
         [HttpDelete("{id}")]
-        public void Delete(Guid id)
+        public IActionResult Delete(Guid id)
         {
-            _cartService.DeleteCart(id);
+            var removed = _cartService.DeleteCart(id);
+            return removed ? new OkResult() : new NotFoundResult();
         }
     }
 }

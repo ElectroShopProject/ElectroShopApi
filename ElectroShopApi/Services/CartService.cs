@@ -38,6 +38,10 @@ namespace ElectroShopApi.Services
         public Cart AddProduct(Guid cartId, Guid productId)
         {
             var cart = GetCart(cartId);
+            if (cart == null)
+            {
+                throw new NullReferenceException();
+            }
 
             var product = _productService.GetProduct(productId);
             var updatedCart = AddProductToCartUseCase.Add(cart, product);
@@ -47,6 +51,10 @@ namespace ElectroShopApi.Services
         public Cart RemoveProduct(Guid cartId, Guid productId)
         {
             var cart = GetCart(cartId);
+            if (cart == null)
+            {
+                throw new NullReferenceException();
+            }
 
             var product = _productService.GetProduct(productId);
             var updatedCart = RemoveProductFromCartUseCase.Remove(cart, product);
