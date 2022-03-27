@@ -9,7 +9,7 @@ namespace ElectroShopApi
         {
         }
 
-        public static Cart Add(Cart cart, Product product)
+        public static CartSummary Add(CartSummary cart, Product product)
         {
             var currentProducts = cart.Products;
             currentProducts.Add(product);

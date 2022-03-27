@@ -10,9 +10,9 @@ namespace ElectroShopApi
         {
         }
 
-        public static Cart? Call(List<Cart> carts, Guid id)
+        public static CartSummary? Call(List<CartSummary> carts, Guid id)
         {
-            return carts.Find((Cart obj) => obj.Id == id);
+            return carts.Find((CartSummary obj) => obj.Id == id);
         }
     }
 }

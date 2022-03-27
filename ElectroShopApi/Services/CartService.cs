@@ -7,7 +7,7 @@ namespace ElectroShopApi.Services
 {
     public class CartService
     {
-        private readonly HashSet<Cart> Carts = new();
+        private readonly HashSet<CartSummary> Carts = new();
         private readonly UserService _userService;
         private readonly ProductService _productService;
 
@@ -17,12 +17,12 @@ namespace ElectroShopApi.Services
             _productService = productService;
         }
 
-        public Cart? GetCart(Guid id)
+        public CartSummary? GetCart(Guid id)
         {
             return GetCartUseCase.Call(Carts.Values(), id);
         }
 
-        public Cart CreateCart(Guid userId)
+        public CartSummary CreateCart(Guid userId)
         {
             var user = _userService.GetUser(userId);
             var newCart = CreateCartUseCase.Create(Carts.Values(), user);
@@ -35,7 +35,7 @@ namespace ElectroShopApi.Services
             return GetCart(id)?.Products ?? new List<Product>();
         }
 
-        public Cart AddProduct(Guid cartId, Guid productId)
+        public CartSummary AddProduct(Guid cartId, Guid productId)
         {
             var cart = GetCart(cartId);
             if (cart == null)
@@ -48,7 +48,7 @@ namespace ElectroShopApi.Services
             return updatedCart;
         }
 
-        public Cart RemoveProduct(Guid cartId, Guid productId)
+        public CartSummary RemoveProduct(Guid cartId, Guid productId)
         {
             var cart = GetCart(cartId);
             if (cart == null)

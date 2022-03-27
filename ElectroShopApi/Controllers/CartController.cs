@@ -47,7 +47,7 @@ namespace ElectroShopApi
         {
             try
             {
-                Cart cart = _cartService.AddProduct(
+                CartSummary cart = _cartService.AddProduct(
                     request.cartId,
                     request.productId
                 );
@@ -70,7 +70,7 @@ namespace ElectroShopApi
         {
             try
             {
-                Cart cart = _cartService.RemoveProduct(
+                CartSummary cart = _cartService.RemoveProduct(
                     request.cartId,
                     request.productId
                 );
