@@ -1,4 +1,5 @@
-﻿using ElectroShopApi.Domain.Summary;
+﻿using System;
+using System.Net;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ElectroShopApi.Controllers
@@ -7,17 +8,37 @@ namespace ElectroShopApi.Controllers
     [Route("summary")]
     public class SummaryController : ControllerBase
     {
-        [HttpGet]
-        public IActionResult Get()
+
+        private readonly SummaryService _summaryService;
+
+        public SummaryController(SummaryService summaryService)
         {
-            return Summary();
+            _summaryService = summaryService;
+        }
+
+        [HttpGet]
+        public IActionResult Get([FromQuery] Guid cartId)
+        {
+            try
+            {
+                return new JsonResult(_summaryService.GetCartSummary(cartId));
+            }
+            catch (NullReferenceException)
+            {
+                return new NotFoundObjectResult("There is no cart with this ID");
+            }
+            catch (Exception)
+            {
+                return new StatusCodeResult((int)HttpStatusCode.InternalServerError);
+            }
         }
 
         [Route("finalize")]
         [HttpPost]
         public IActionResult Finalize()
         {
-            return PaymentRequirment;
+            // TODO Finish
+            return new OkResult();
         }
     }
 }

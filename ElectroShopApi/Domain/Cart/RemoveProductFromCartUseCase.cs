@@ -9,7 +9,7 @@ namespace ElectroShopApi
         {
         }
 
-        public static CartSummary Remove(CartSummary cart, Product product)
+        public static Cart Remove(Cart cart, Product product)
         {
             var currentProducts = cart.Products;
             currentProducts.Remove(product);
