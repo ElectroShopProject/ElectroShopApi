@@ -33,9 +33,17 @@ namespace ElectroShopApi.Controllers
             }
         }
 
-        [Route("finalize")]
+        [Route("complete")]
         [HttpPost]
-        public IActionResult Finalize()
+        public IActionResult Complete()
+        {
+            // TODO Finish
+            return new OkResult();
+        }
+
+        [Route("pay")]
+        [HttpPost]
+        public IActionResult Complete()
         {
             // TODO Finish
             return new OkResult();

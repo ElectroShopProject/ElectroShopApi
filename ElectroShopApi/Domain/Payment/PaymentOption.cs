@@ -1,7 +1,7 @@
 ﻿using System;
 namespace ElectroShopApi
 {
-    public record Manufacturer(String Name, String Country)
+    public record PaymentOption(PaymentOptionType Type, bool IsAvailable)
     {
         public Guid Id { init; get; } = Guid.NewGuid();
     }

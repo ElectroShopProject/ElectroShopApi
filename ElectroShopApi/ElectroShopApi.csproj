@@ -14,6 +14,7 @@
     <None Remove="Domain\Product\" />
     <None Remove="Domain\Summary\" />
     <None Remove="Domain\Tax\" />
+    <None Remove="Domain\Payment\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Domain\" />
@@ -25,6 +26,7 @@
     <Folder Include="Domain\Product\" />
     <Folder Include="Domain\CartSummary\" />
     <Folder Include="Domain\Tax\" />
+    <Folder Include="Domain\Payment\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Update="Domain\Summary\GetSummaryUseCase.cs">

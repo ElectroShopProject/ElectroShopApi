@@ -7,8 +7,12 @@ namespace ElectroShopApi.Services
     {
 
         private readonly Product CurrentProduct = new(
-            Name: "New product",
-            Category: ProductCategory.Others
+            Name: "Phone",
+            Category: ProductCategory.Telecommunication,
+            Manufacturer: new Manufacturer(Name: "ABC", Country: "Poland"),
+            NetPrice: 100,
+            GrossPrice: 123,
+            TaxRate: TaxRate.DefaultTax
         );
 
         public ProductService()

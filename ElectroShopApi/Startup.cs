@@ -28,6 +28,7 @@ namespace ElectroShopApi
             services.AddSingleton<UserService>();
             services.AddSingleton<ProductService>();
             services.AddSingleton<CartService>();
+            services.AddSingleton<SummaryService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
