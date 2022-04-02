@@ -40,5 +40,10 @@ namespace ElectroShopApi
             var options = _paymentService.GetPaymentOptions();
             return GetPaymentRequirmentUseCase.Get(summary, options);
         }
+
+        internal void FinalizeCart(Guid cartId)
+        {
+            _cartService.DeleteCart(cartId);
+        }
     }
 }

@@ -20,7 +20,7 @@ namespace ElectroShopApi.Controllers
             )
         };
 
-
+        // GET /products
         [HttpGet]
         public IEnumerable<Product> Get()
         {

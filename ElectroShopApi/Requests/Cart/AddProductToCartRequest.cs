@@ -1,5 +1,5 @@
 ﻿using System;
 namespace ElectroShopApi
 {
-    public record AddProductToCartRequest(Guid cartId, Guid productId);
+    public record AddProductToCartRequest(Guid CartId, Guid ProductId);
 }

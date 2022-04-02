@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using ElectroShopApi.Domain.Payment;
 using ElectroShopApi.Domain.Summary;
@@ -17,6 +16,14 @@ namespace ElectroShopApi
             List<PaymentOption> paymentOptions
         )
         {
+            if (summary.GrossTotal <= 0.0)
+            {
+                return new PaymentRequirment(
+                    Amount: 0.0,
+                    AvailablePaymentOptions: new List<PaymentOptionType>()
+                );
+            }
+
             var availableOptions = paymentOptions
                 .Where(option => option.IsAvailable)
                 .Select(optionType => optionType.Type)
