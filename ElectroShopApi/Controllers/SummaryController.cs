@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Net;
+using ElectroShopApi.Requests.Cart;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ElectroShopApi.Controllers
 {
-    [ApiController]
     [Route("summary")]
     public class SummaryController : ControllerBase
     {
@@ -16,6 +16,7 @@ namespace ElectroShopApi.Controllers
             _summaryService = summaryService;
         }
 
+        // GET /summary
         [HttpGet]
         public IActionResult Get([FromQuery] Guid cartId)
         {
@@ -33,20 +34,40 @@ namespace ElectroShopApi.Controllers
             }
         }
 
-        [Route("complete")]
+        // POST /summary/completion
+        [Route("completion")]
         [HttpPost]
-        public IActionResult Complete()
+        public IActionResult PostCompletion([FromBody] CompleteCartRequest request)
         {
-            // TODO Finish
-            return new OkResult();
+            try
+            {
+                var paymentRequirment = _summaryService.GetPaymentRequirment(request.CartId);
+                return new JsonResult(paymentRequirment);
+            }
+            catch (NullReferenceException)
+            {
+                return new NotFoundObjectResult("There is no cart with this ID");
+            }
+            catch (Exception)
+            {
+                return new StatusCodeResult((int)HttpStatusCode.InternalServerError);
+            }
         }
 
-        [Route("pay")]
+        // POST /summary/payment
+        [Route("payment")]
         [HttpPost]
-        public IActionResult Pay()
+        public IActionResult PostPayment([FromBody] CartPaymentRequest request)
         {
-            // TODO Finish
-            return new OkResult();
+            try
+            {
+                _summaryService.FinalizeCart(request.CartId);
+                return new OkResult();
+            }
+            catch (Exception)
+            {
+                return new StatusCodeResult((int)HttpStatusCode.InternalServerError);
+            }
         }
     }
 }

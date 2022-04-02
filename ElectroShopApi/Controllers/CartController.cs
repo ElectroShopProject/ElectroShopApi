@@ -23,7 +23,7 @@ namespace ElectroShopApi
         [HttpPost]
         public IActionResult Post([FromBody] CreateCartRequest request)
         {
-            return new JsonResult(_cartService.CreateCart(request.userId));
+            return new JsonResult(_cartService.CreateCart(request.UserId));
         }
 
         // GET /cart/id
@@ -48,8 +48,8 @@ namespace ElectroShopApi
             try
             {
                 Cart cart = _cartService.AddProduct(
-                    request.cartId,
-                    request.productId
+                    request.CartId,
+                    request.ProductId
                 );
                 return new JsonResult(cart);
             }

@@ -1,7 +1,6 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using ElectroShopApi.Domain;
+﻿using System.Linq;
 using ElectroShopApi.Domain.CartSummary;
+using ElectroShopApi.Domain.Payment;
 using ElectroShopApi.Domain.Summary;
 
 namespace ElectroShopApi
