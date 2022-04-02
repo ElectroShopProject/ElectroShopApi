@@ -2,12 +2,12 @@
 namespace ElectroShopApi
 {
 
-    public record TaxRate(ProductCategory Category, double Amount)
+    public record TaxRate(ProductCategory Category, double Percent)
     {
-        public const double DefaultVatTaxAmount = 23;
+        public const double DefaultVatTaxPercent = 0.23;
         public static TaxRate DefaultTax = new(
             Category: ProductCategory.Others,
-            Amount: DefaultVatTaxAmount
+            Percent: DefaultVatTaxPercent
         );
     }
 }

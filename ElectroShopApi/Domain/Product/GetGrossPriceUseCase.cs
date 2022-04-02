@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using ElectroShopApi.Domain;
+﻿using ElectroShopApi.Domain;
 
 namespace ElectroShopApi
 {
@@ -13,7 +10,7 @@ namespace ElectroShopApi
 
         public static double Get(Product product, TaxRate taxRate)
         {
-            var taxAmount = product.NetPrice * taxRate.Amount;
+            var taxAmount = product.NetPrice * taxRate.Percent;
             return product.NetPrice + taxAmount;
         }
     }
