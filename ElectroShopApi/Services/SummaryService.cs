@@ -21,7 +21,6 @@ namespace ElectroShopApi
         public CartSummary? GetCartSummary(Guid cartId)
         {
             var cart = _cartService.GetCart(cartId);
-
             if (cart == null)
             {
                 throw new NullReferenceException();

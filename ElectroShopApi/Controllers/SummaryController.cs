@@ -43,7 +43,7 @@ namespace ElectroShopApi.Controllers
 
         [Route("pay")]
         [HttpPost]
-        public IActionResult Complete()
+        public IActionResult Pay()
         {
             // TODO Finish
             return new OkResult();
