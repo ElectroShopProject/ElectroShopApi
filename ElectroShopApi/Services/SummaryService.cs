@@ -11,11 +11,17 @@ namespace ElectroShopApi
 
         private readonly CartService _cartService;
         private readonly PaymentService _paymentService;
+        private readonly OrderService _orderService;
 
-        public SummaryService(CartService cartService, PaymentService paymentService)
+        public SummaryService(
+            CartService cartService,
+            PaymentService paymentService,
+            OrderService orderService
+        )
         {
             _cartService = cartService;
             _paymentService = paymentService;
+            _orderService = orderService;
         }
 
         public CartSummary? GetCartSummary(Guid cartId)
@@ -41,9 +47,11 @@ namespace ElectroShopApi
             return GetPaymentRequirmentUseCase.Get(summary, options);
         }
 
-        internal void FinalizeCart(Guid cartId)
+        public Order FinalizeCart(Guid cartId, PaymentOptionType paymentType)
         {
+            var order = _orderService.CreateOrder(cartId, paymentType);
             _cartService.DeleteCart(cartId);
+            return order;
         }
     }
 }

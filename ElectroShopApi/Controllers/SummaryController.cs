@@ -61,8 +61,11 @@ namespace ElectroShopApi.Controllers
         {
             try
             {
-                _summaryService.FinalizeCart(request.CartId);
-                return new OkResult();
+                var order = _summaryService.FinalizeCart(
+                    request.CartId,
+                    request.PaymentOptionType
+                );
+                return new JsonResult(order);
             }
             catch (Exception)
             {
