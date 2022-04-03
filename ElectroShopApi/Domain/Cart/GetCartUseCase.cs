@@ -6,11 +6,7 @@ namespace ElectroShopApi
 {
     public class GetCartUseCase
     {
-        public GetCartUseCase()
-        {
-        }
-
-        public static Cart? Call(List<Cart> carts, Guid id)
+        public static Cart? Get(List<Cart> carts, Guid id)
         {
             return carts.Find((Cart obj) => obj.Id == id);
         }

@@ -43,6 +43,22 @@ namespace ElectroShopApi
 
         internal void FinalizeCart(Guid cartId)
         {
+            var cart = _cartService.GetCart(cartId);
+            if (cart == null)
+            {
+                throw new NullReferenceException();
+            }
+
+            var summary = GetCartSummary(cartId);
+            if (summary == null)
+            {
+                throw new NullReferenceException();
+            }
+
+            var payment = _paymentService.GetPayment(summary.GrossTotal);
+            var user = cart.User;
+            var order = new Order(User: user, Payment: payment, Products: cart.Products);
+
             _cartService.DeleteCart(cartId);
         }
     }

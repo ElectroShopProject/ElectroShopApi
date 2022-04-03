@@ -19,7 +19,7 @@ namespace ElectroShopApi.Services
 
         public Cart? GetCart(Guid id)
         {
-            return GetCartUseCase.Call(Carts.Values(), id);
+            return GetCartUseCase.Get(Carts.Values(), id);
         }
 
         public Cart CreateCart(Guid userId)

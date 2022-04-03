@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using ElectroShopApi.Domain.Payment;
 
 namespace ElectroShopApi.Services
 {
@@ -18,6 +19,10 @@ namespace ElectroShopApi.Services
         {
         }
 
+        public Payment GetPayment(double amount)
+        {
+            return CreatePaymentUseCase.Create(amount);
+        }
 
         public List<PaymentOption> GetPaymentOptions()
         {
