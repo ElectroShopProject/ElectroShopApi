@@ -1,5 +1,5 @@
 ﻿using System;
 namespace ElectroShopApi.Domain.Payment
 {
-    public record Payment(double Amount, PaymentStatus PaymentStatus);
+    public record Payment(double Amount, PaymentStatus PaymentStatus, PaymentOptionType Type);
 }

@@ -15,13 +15,9 @@ namespace ElectroShopApi.Services
             new PaymentOption(PaymentOptionType.Cash, IsAvailable: false)
         };
 
-        public PaymentService()
+        public Payment GetPayment(double amount, PaymentOptionType type)
         {
-        }
-
-        public Payment GetPayment(double amount)
-        {
-            return CreatePaymentUseCase.Create(amount);
+            return CreatePaymentUseCase.Create(amount, type);
         }
 
         public List<PaymentOption> GetPaymentOptions()
