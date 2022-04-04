@@ -1,7 +1,5 @@
-﻿using System;
-namespace ElectroShopApi
+﻿namespace ElectroShopApi
 {
-
     public record TaxRate(ProductCategory Category, double Percent)
     {
         public const double DefaultVatTaxPercent = 0.23;

@@ -7,10 +7,6 @@ namespace ElectroShopApi
 {
     public class GetPaymentRequirmentUseCase
     {
-        public GetPaymentRequirmentUseCase()
-        {
-        }
-
         public static PaymentRequirment Get(
             CartSummary summary,
             List<PaymentOption> paymentOptions

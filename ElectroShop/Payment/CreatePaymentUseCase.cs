@@ -5,10 +5,6 @@ namespace ElectroShopApi
 {
     public class CreatePaymentUseCase
     {
-        public CreatePaymentUseCase()
-        {
-        }
-
         public static Payment Create(double amount, PaymentOptionType type)
         {
             // For now just return random payment status
