@@ -5,30 +5,15 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Domain\" />
-    <None Remove="Domain\Cart\" />
-    <None Remove="Domain\User\" />
     <None Remove="Requests\" />
     <None Remove="Requests\Cart\" />
     <None Remove="Extensions\" />
-    <None Remove="Domain\Product\" />
     <None Remove="Domain\Summary\" />
-    <None Remove="Domain\Tax\" />
-    <None Remove="Domain\Payment\" />
-    <None Remove="Domain\Order\" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Domain\" />
-    <Folder Include="Domain\Cart\" />
-    <Folder Include="Domain\User\" />
     <Folder Include="Requests\" />
     <Folder Include="Requests\Cart\" />
     <Folder Include="Extensions\" />
-    <Folder Include="Domain\Product\" />
-    <Folder Include="Domain\CartSummary\" />
-    <Folder Include="Domain\Tax\" />
-    <Folder Include="Domain\Payment\" />
-    <Folder Include="Domain\Order\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Update="Domain\Summary\GetSummaryUseCase.cs">
@@ -36,5 +21,10 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ElectroShop\ElectroShop.csproj">
+      <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
+    </ProjectReference>
   </ItemGroup>
 </Project>

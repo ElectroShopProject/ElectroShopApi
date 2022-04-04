@@ -6,10 +6,6 @@ namespace ElectroShopApi.Domain.CartSummary
 {
     public class GetCountedProductsUseCase
     {
-        public GetCountedProductsUseCase()
-        {
-        }
-
         public static List<KeyValuePair<Product, int>> Get(List<Product> products)
         {
             var countedProducts = products

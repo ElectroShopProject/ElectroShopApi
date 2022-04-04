@@ -4,11 +4,6 @@ namespace ElectroShopApi
 {
     public class RemoveProductFromCartUseCase
     {
-
-        public RemoveProductFromCartUseCase()
-        {
-        }
-
         public static Cart Remove(Cart cart, Product product)
         {
             var currentProducts = cart.Products;

@@ -1,0 +1,26 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Cart\" />
+    <None Remove="CartSummary\" />
+    <None Remove="Order\" />
+    <None Remove="Payment\" />
+    <None Remove="Product\" />
+    <None Remove="Tax\" />
+    <None Remove="User\" />
+    <None Remove="Microsoft.AspNetCore" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Cart\" />
+    <Folder Include="CartSummary\" />
+    <Folder Include="Order\" />
+    <Folder Include="Payment\" />
+    <Folder Include="Product\" />
+    <Folder Include="Tax\" />
+    <Folder Include="User\" />
+  </ItemGroup>
+</Project>

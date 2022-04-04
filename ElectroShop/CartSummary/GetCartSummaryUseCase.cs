@@ -1,17 +1,11 @@
 ﻿using System.Linq;
 using ElectroShopApi.Domain.CartSummary;
-using ElectroShopApi.Domain.Payment;
 using ElectroShopApi.Domain.Summary;
 
 namespace ElectroShopApi
 {
     public class GetCartSummaryUseCase
     {
-
-        public GetCartSummaryUseCase()
-        {
-        }
-
         public static CartSummary Get(Cart cart)
         {
             var countedProducts = GetCountedProductsUseCase.Get(cart.Products);
