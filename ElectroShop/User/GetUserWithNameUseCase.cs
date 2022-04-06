@@ -1,7 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using ElectroShopApi.Domain.User;
 
+#nullable enable
 namespace ElectroShop
 {
     public class GetUserWithNameUseCase

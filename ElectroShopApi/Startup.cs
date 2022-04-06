@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using ElectroShopApi.Services;
 using Microsoft.AspNetCore.Builder;
@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.EntityFrameworkCore;
 
 namespace ElectroShopApi
 {
@@ -31,6 +32,9 @@ namespace ElectroShopApi
             services.AddSingleton<PaymentService>();
             services.AddSingleton<SummaryService>();
             services.AddSingleton<OrderService>();
+
+            services.AddDbContext<UserTableContext>(options =>
+                    options.UseSqlite(Configuration.GetConnectionString("UserTableContext")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
