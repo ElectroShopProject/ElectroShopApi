@@ -1,20 +1,23 @@
 ﻿using System;
+using System.Collections.Generic;
+using ElectroShop;
 using ElectroShopApi.Domain.User;
 
+#nullable enable
 namespace ElectroShopApi
 {
     public class UserService
     {
-        private readonly User CurrentUser = new User("New user");
+        private readonly List<User> Users = new();
 
-        public UserService()
+        public User? GetUser(Guid userId)
         {
+            return GetUserWithIdUseCase.Get(Users, userId);
         }
 
-        internal User GetUser(Guid userId)
+        public User CreateUser(string userName)
         {
-            // TODO In future allow more users
-            return CurrentUser with { Id = userId };
+            return CreateUserUseCase.Create(userName);
         }
     }
 }
