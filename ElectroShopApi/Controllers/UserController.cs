@@ -10,10 +10,33 @@ namespace ElectroShopApi.Controllers
     public class UserController
     {
         private readonly OrderService _orderService;
+        private readonly UserService _userService;
 
-        public UserController(OrderService orderService)
+        public UserController(OrderService orderService, UserService userService)
         {
             _orderService = orderService;
+            _userService = userService;
+        }
+
+        // POST /user/login
+        [Route("login")]
+        [HttpPost]
+        public IActionResult PostLogin([FromBody] LoginUserRequest request)
+        {
+            try
+            {
+                var user = _userService.GetUser(request.Name);
+                if (user != null)
+                {
+                    return new JsonResult(user);
+                }
+
+                return new JsonResult(_userService.CreateUser(request.Name));
+            }
+            catch (Exception ex)
+            {
+                return new StatusCodeResult((int)HttpStatusCode.InternalServerError);
+            }
         }
 
         // GET /user/orders

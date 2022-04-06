@@ -31,7 +31,7 @@ namespace ElectroShopApi.Services
 
         public Order CreateOrder(Guid cartId, PaymentOptionType paymentType)
         {
-            var foundOrder = (Orders.Values().Find(order => order.CartId == cartId));
+            var foundOrder = Orders.Values().Find(order => order.CartId == cartId);
             if (foundOrder != null)
             {
                 return foundOrder;
