@@ -8,16 +8,23 @@ namespace ElectroShopApi
 {
     public class UserService
     {
-        private readonly List<User> Users = new();
+        private readonly HashSet<User> Users = new();
 
         public User? GetUser(Guid userId)
         {
-            return GetUserWithIdUseCase.Get(Users, userId);
+            return GetUserWithIdUseCase.Get(Users.Values(), userId);
+        }
+
+        public User? GetUser(string name)
+        {
+            return GetUserWithNameUseCase.Get(Users.Values(), name);
         }
 
         public User CreateUser(string userName)
         {
-            return CreateUserUseCase.Create(userName);
+            var newUser = CreateUserUseCase.Create(userName);
+            Users.Add(newUser);
+            return newUser;
         }
     }
 }

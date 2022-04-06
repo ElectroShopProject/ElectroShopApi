@@ -9,11 +9,13 @@
     <None Remove="Requests\Cart\" />
     <None Remove="Extensions\" />
     <None Remove="Domain\Summary\" />
+    <None Remove="Requests\User\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Requests\" />
     <Folder Include="Requests\Cart\" />
     <Folder Include="Extensions\" />
+    <Folder Include="Requests\User\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Update="Domain\Summary\GetSummaryUseCase.cs">
