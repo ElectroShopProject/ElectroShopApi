@@ -12,14 +12,15 @@ namespace ElectroShopApi.Controllers
         private readonly OrderService _orderService;
         private readonly UserService _userService;
 
-        public UserController(OrderService orderService)
+        public UserController(OrderService orderService, UserService userService)
         {
             _orderService = orderService;
+            _userService = userService;
         }
 
-        // GET /user/orders
+        // POST /user/login
         [Route("login")]
-        [HttpGet]
+        [HttpPost]
         public IActionResult PostLogin([FromBody] LoginUserRequest request)
         {
             try
@@ -32,7 +33,7 @@ namespace ElectroShopApi.Controllers
 
                 return new JsonResult(_userService.CreateUser(request.Name));
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 return new StatusCodeResult((int)HttpStatusCode.InternalServerError);
             }

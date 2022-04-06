@@ -1,5 +1,4 @@
-﻿using System;
-namespace ElectroShopApi
+﻿namespace ElectroShopApi
 {
     public record LoginUserRequest(string Name);
 }
