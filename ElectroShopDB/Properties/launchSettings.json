@@ -3,14 +3,22 @@
     "windowsAuthentication": false,
     "anonymousAuthentication": true,
     "iisExpress": {
-      "applicationUrl": "http://localhost:19028",
-      "sslPort": 44340
+      "applicationUrl": "http://localhost:55030",
+      "sslPort": 44328
     }
   },
   "profiles": {
     "IIS Express": {
       "commandName": "IISExpress",
       "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      }
+    },
+    "ElectroShopDB": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "applicationUrl": "https://localhost:34192;http://localhost:8259",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }

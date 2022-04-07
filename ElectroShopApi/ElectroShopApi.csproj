@@ -33,7 +33,7 @@
     <ProjectReference Include="..\ElectroShop\ElectroShop.csproj">
       <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
     </ProjectReference>
-    <ProjectReference Include="..\ElectroShopDB2\ElectroShopDB.csproj">
+    <ProjectReference Include="..\ElectroShopDB\ElectroShopDB.csproj">
       <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
     </ProjectReference>
   </ItemGroup>
