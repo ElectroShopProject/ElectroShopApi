@@ -1,6 +1,8 @@
 ﻿using System;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Hosting;
+using ElectroShopDB.Data;
+using ElectroShopDB.Extensions;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace ElectroShopDB
 {
@@ -8,15 +10,21 @@ namespace ElectroShopDB
     {
         public static void Main(string[] args)
         {
-            Console.WriteLine("ElectroShopDB.Program.Main");
-            CreateHostBuilder(args).Build().Run();
+            Console.WriteLine("Running ElectroShopDB");
         }
 
-        public static IHostBuilder CreateHostBuilder(string[] args) =>
-            Host.CreateDefaultBuilder(args)
-                .ConfigureWebHostDefaults(webBuilder =>
-                {
-                    webBuilder.UseStartup<Startup>();
-                });
+        public static void ConfigureServices(IServiceCollection services)
+        {
+            services
+                .AddContext<ManufacturerTableContext>()
+                .AddContext<TaxRateTableContext>();
+        }
+
+        public static void Configure(IApplicationBuilder app)
+        {
+            app.ApplicationServices
+                .EnsureCreated<ManufacturerTableContext>()
+                .EnsureCreated<TaxRateTableContext>();
+        }
     }
 }
