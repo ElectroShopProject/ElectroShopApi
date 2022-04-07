@@ -10,6 +10,11 @@
     <None Remove="Extensions\" />
     <None Remove="Domain\Summary\" />
     <None Remove="Requests\User\" />
+    <None Remove="Microsoft.SqlServer.Compact" />
+    <None Remove="Microsoft.VisualStudio.Web.CodeGeneration.Design" />
+    <None Remove="Microsoft.EntityFrameworkCore.SqlServer" />
+    <None Remove="Microsoft.EntityFrameworkCore.Tools" />
+    <None Remove="Microsoft.EntityFrameworkCore.Sqlite" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Requests\" />
@@ -28,5 +33,11 @@
     <ProjectReference Include="..\ElectroShop\ElectroShop.csproj">
       <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
     </ProjectReference>
+    <ProjectReference Include="..\ElectroShopDB\ElectroShopDB.csproj">
+      <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="5.0.2" />
   </ItemGroup>
 </Project>

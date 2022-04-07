@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
 using ElectroShopApi.Services;
+using ElectroShopDB.Data;
 using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -13,6 +11,9 @@ namespace ElectroShopApi
 {
     public class Startup
     {
+
+        private const string DB_NAME = "InMemoryDatabase";
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -31,6 +32,15 @@ namespace ElectroShopApi
             services.AddSingleton<PaymentService>();
             services.AddSingleton<SummaryService>();
             services.AddSingleton<OrderService>();
+
+            // TODO Move from here to the DB module
+            services.AddDbContext<TaxRateTableContext>(
+                options => options.UseInMemoryDatabase(DB_NAME)
+            );
+
+            services.AddDbContext<ManufacturerTableContext>(
+               options => options.UseInMemoryDatabase(DB_NAME)
+           );
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

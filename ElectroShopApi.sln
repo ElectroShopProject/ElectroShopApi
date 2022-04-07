@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ElectroShopApi", "ElectroSh
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ElectroShop", "ElectroShop\ElectroShop.csproj", "{0C5C8FD4-6CBF-47F7-950B-FC9B92682EA9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ElectroShopDB", "ElectroShopDB\ElectroShopDB.csproj", "{F1077EBA-FD85-4E27-99A8-82E90C7FF2AC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{0C5C8FD4-6CBF-47F7-950B-FC9B92682EA9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0C5C8FD4-6CBF-47F7-950B-FC9B92682EA9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0C5C8FD4-6CBF-47F7-950B-FC9B92682EA9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F1077EBA-FD85-4E27-99A8-82E90C7FF2AC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F1077EBA-FD85-4E27-99A8-82E90C7FF2AC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F1077EBA-FD85-4E27-99A8-82E90C7FF2AC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F1077EBA-FD85-4E27-99A8-82E90C7FF2AC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

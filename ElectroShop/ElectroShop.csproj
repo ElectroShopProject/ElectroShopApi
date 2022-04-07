@@ -13,6 +13,7 @@
     <None Remove="Tax\" />
     <None Remove="User\" />
     <None Remove="Microsoft.AspNetCore" />
+    <None Remove="Microsoft.SqlServer.Compact" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Cart\" />
