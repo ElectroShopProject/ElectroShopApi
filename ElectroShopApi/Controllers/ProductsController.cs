@@ -37,7 +37,6 @@ namespace ElectroShopApi
         [HttpGet]
         public IEnumerable<Product> Get()
         {
-            _context.Database.EnsureCreated();
             return ProductList;
         }
 
