@@ -1,5 +1,5 @@
 ﻿using System;
-namespace ElectroShopApi
+namespace ElectroShop
 {
     public record Manufacturer(String Name, String Country)
     {

@@ -1,8 +1,6 @@
 ﻿using System.Collections.Generic;
-using ElectroShopApi.Domain;
-using ElectroShopApi.Domain.User;
 
-namespace ElectroShopApi
+namespace ElectroShop
 {
     public class CreateCartUseCase
     {

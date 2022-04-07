@@ -1,22 +1,34 @@
 ﻿using System;
-using ElectroShopApi.Domain;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using ElectroShop;
+using ElectroShopDB;
 
-namespace ElectroShopApi.Services
+namespace ElectroShopApi
 {
     public class ProductService
     {
 
-        private readonly Product CurrentProduct = new(
-            Name: "Phone",
-            Category: ProductCategory.Telecommunication,
-            Manufacturer: new Manufacturer(Name: "ABC", Country: "Poland"),
-            NetPrice: 100,
-            GrossPrice: 123,
-            TaxRate: TaxRate.DefaultTax
-        );
+        private readonly ProductTableContext _context;
 
-        public ProductService()
+        public ProductService(ProductTableContext context)
         {
+            _context = context;
+        }
+
+        public async Task<List<Product>> GetProducts()
+        {
+            List<ProductTable> tables = await _context.ProductTable.ToListAsync();
+            var manufacturers = tables.Select(table =>
+                new Product(
+                    Name: table.Name,
+                    Country: table.Country
+                )
+                { Id = table.Id.ToGuid() }
+            );
+
+            return manufacturers;
         }
 
         public Product GetProduct(Guid productId)

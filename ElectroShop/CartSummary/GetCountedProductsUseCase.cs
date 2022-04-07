@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace ElectroShopApi.Domain.CartSummary
+namespace ElectroShop
 {
     public class GetCountedProductsUseCase
     {

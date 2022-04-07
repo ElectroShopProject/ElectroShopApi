@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ElectroShopApi
+namespace ElectroShop
 {
     public record TaxRate(ProductCategory Category, double Percent)
     {

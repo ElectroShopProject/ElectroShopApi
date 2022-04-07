@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using ElectroShop;
 
 #nullable enable
 namespace ElectroShopApi.Services

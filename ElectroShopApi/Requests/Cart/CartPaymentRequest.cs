@@ -1,4 +1,5 @@
 ﻿using System;
+using ElectroShop;
 
 namespace ElectroShopApi.Controllers
 {

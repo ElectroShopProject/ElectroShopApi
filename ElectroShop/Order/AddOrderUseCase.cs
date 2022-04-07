@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace ElectroShopApi.Domain
+namespace ElectroShop
 {
     public class AddOrderUseCase
     {

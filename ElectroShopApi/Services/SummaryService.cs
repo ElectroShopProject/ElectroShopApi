@@ -1,6 +1,5 @@
 ﻿using System;
-using ElectroShopApi.Domain.Payment;
-using ElectroShopApi.Domain.Summary;
+using ElectroShop;
 using ElectroShopApi.Services;
 
 #nullable enable

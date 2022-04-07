@@ -1,4 +1,5 @@
 ﻿using System;
+using ElectroShop;
 using ElectroShopApi.Requests.Cart;
 using ElectroShopApi.Services;
 using Microsoft.AspNetCore.Mvc;

@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace ElectroShopApi.Tables.Product
+namespace ElectroShopDB
 {
     public class ManufacturerTable
     {

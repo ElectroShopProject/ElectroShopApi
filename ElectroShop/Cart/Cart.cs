@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using ElectroShopApi.Domain;
-using ElectroShopApi.Domain.User;
 
-namespace ElectroShopApi
+namespace ElectroShop
 {
     public record Cart(User User, List<Product> Products)
     {

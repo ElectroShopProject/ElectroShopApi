@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using ElectroShopApi.Domain;
+using ElectroShop;
 
 #nullable enable
 namespace ElectroShopApi.Services

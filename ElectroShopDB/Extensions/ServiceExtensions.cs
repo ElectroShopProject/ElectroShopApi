@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace ElectroShopDB.Extensions
+namespace ElectroShopDB
 {
     public static class ServiceExtensions
     {

@@ -1,7 +1,6 @@
 ﻿using System;
-using ElectroShopApi.Domain.Payment;
 
-namespace ElectroShopApi
+namespace ElectroShop
 {
     public class CreatePaymentUseCase
     {

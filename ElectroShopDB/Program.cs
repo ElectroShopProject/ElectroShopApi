@@ -1,6 +1,4 @@
 ﻿using System;
-using ElectroShopDB.Data;
-using ElectroShopDB.Extensions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -17,14 +15,14 @@ namespace ElectroShopDB
         {
             services
                 .AddContext<ManufacturerTableContext>()
-                .AddContext<TaxRateTableContext>();
+                .AddContext<ProductTableContext>();
         }
 
         public static void Configure(IApplicationBuilder app)
         {
             app.ApplicationServices
                 .EnsureCreated<ManufacturerTableContext>()
-                .EnsureCreated<TaxRateTableContext>();
+                .EnsureCreated<ProductTableContext>();
         }
     }
 }

@@ -1,5 +1,5 @@
 ﻿using System;
-namespace ElectroShopApi.Domain.CartSummary
+namespace ElectroShop
 {
     public record SummaryProduct(
         Guid Id,

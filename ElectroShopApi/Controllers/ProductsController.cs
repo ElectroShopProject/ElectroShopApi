@@ -1,12 +1,7 @@
-﻿using System.Collections.Generic;
-using Microsoft.AspNetCore.Mvc;
-using ElectroShopApi.Domain;
-using ElectroShopDB.Data;
-using ElectroShopApi.Tables.Product;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Mvc;
+using ElectroShopApi.Services;
 using System.Threading.Tasks;
-using System.Linq;
-using ElectroShopApi.Extensions;
+using System;
 
 namespace ElectroShopApi
 {
@@ -15,46 +10,30 @@ namespace ElectroShopApi
     public class ProductsController : ControllerBase
     {
 
-        private readonly ManufacturerTableContext _context;
+        private readonly ProductService _service;
 
-        public ProductsController(ManufacturerTableContext context)
+        public ProductsController(ProductService service)
         {
-            _context = context;
+            _service = service;
         }
-
-        private static readonly Product[] ProductList = new[] {
-            new Product(
-                Name: "Phone",
-                Category: ProductCategory.Telecommunication,
-                Manufacturer: new Manufacturer(Name: "ABC", Country: "Poland"),
-                NetPrice: 100,
-                GrossPrice: 123,
-                TaxRate: TaxRate.DefaultTax
-            )
-        };
 
         // GET /products
         [HttpGet]
-        public IEnumerable<Product> Get()
+        public async Task<IActionResult> Get()
         {
-            return ProductList;
-        }
-
-        // GET /products/manufacturers
-        [Route("manufacturers")]
-        [HttpGet]
-        public async Task<IEnumerable<Manufacturer>> GetManufacturers()
-        {
-            List<ManufacturerTable> tables = await _context.ManufacturerTable.ToListAsync();
-            var manufacturers = tables.Select(table =>
-                new Manufacturer(
-                    Name: table.Name,
-                    Country: table.Country
-                )
-                { Id = table.Id.ToGuid() }
-            );
-
-            return manufacturers;
+            try
+            {
+                var products = await _service.GetProducts();
+                return new JsonResult(products);
+            }
+            catch (NullReferenceException)
+            {
+                return new NotFoundResult();
+            }
+            catch
+            {
+                return new BadRequestResult();
+            }
         }
     }
 }

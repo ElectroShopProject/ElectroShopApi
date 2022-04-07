@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using ElectroShopApi.Domain.User;
 
 #nullable enable
 namespace ElectroShop

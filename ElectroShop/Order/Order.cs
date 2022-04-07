@@ -1,10 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using ElectroShopApi.Domain;
-using ElectroShopApi.Domain.Payment;
-using ElectroShopApi.Domain.User;
 
-namespace ElectroShopApi
+namespace ElectroShop
 {
     public record Order(Guid CartId, User User, Payment Payment, List<Product> Products)
     {
