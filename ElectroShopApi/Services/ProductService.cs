@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using ElectroShop;
+using ElectroShopApi.Extensions;
 using ElectroShopDB;
+using Microsoft.EntityFrameworkCore;
 
 namespace ElectroShopApi
 {
@@ -19,22 +21,32 @@ namespace ElectroShopApi
 
         public async Task<List<Product>> GetProducts()
         {
+
+            // TODO Extract to mapper
             List<ProductTable> tables = await _context.ProductTable.ToListAsync();
             var manufacturers = tables.Select(table =>
                 new Product(
                     Name: table.Name,
-                    Country: table.Country
+                    NetPrice: table.NetPrice,
+                    GrossPrice: table.GrossPrice,
+                    Category: Enum.Parse<ProductCategory>(table.ProductCategoryTable.Name),
+                    TaxRate:
+                    Manufacturer: new Manufacturer(
+                        Name: table.ManufacturerTable.Name,
+                        Country: table.ManufacturerTable.Country)
+                    { Id = table.ManufacturerTable.Id.ToGuid() }
                 )
                 { Id = table.Id.ToGuid() }
-            );
+            ); ;
 
             return manufacturers;
         }
 
-        public Product GetProduct(Guid productId)
+        public async Task<Product> GetProductAsync(Guid productId)
         {
-            // In future allow more products to select
-            return CurrentProduct;
+            // TODO Extract to UC
+            var products = await GetProducts();
+            return products.First(product => product.Id == productId);
         }
     }
 }

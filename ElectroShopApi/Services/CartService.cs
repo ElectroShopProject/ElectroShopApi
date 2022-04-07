@@ -43,7 +43,7 @@ namespace ElectroShopApi.Services
                 throw new NullReferenceException();
             }
 
-            var product = _productService.GetProduct(productId);
+            var product = _productService.GetProductAsync(productId);
             var updatedCart = AddProductToCartUseCase.Add(cart, product);
             return updatedCart;
         }
@@ -56,7 +56,7 @@ namespace ElectroShopApi.Services
                 throw new NullReferenceException();
             }
 
-            var product = _productService.GetProduct(productId);
+            var product = _productService.GetProductAsync(productId);
             var updatedCart = RemoveProductFromCartUseCase.Remove(cart, product);
             return updatedCart;
         }
