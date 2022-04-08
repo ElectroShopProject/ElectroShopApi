@@ -21,6 +21,7 @@ namespace ElectroShopDB
                 var context = serviceScope.ServiceProvider.GetService<T>();
                 context.Database.EnsureCreated();
             }
+
             return provider;
         }
     }

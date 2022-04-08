@@ -2,6 +2,7 @@ using System;
 using ElectroShopApi.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -24,19 +25,18 @@ namespace ElectroShopApi
         {
             ElectroShopDB.Program.ConfigureServices(services);
             services.AddControllers();
-            services.AddSingleton<UserService>();
-            services.AddSingleton<ProductService>();
-            services.AddSingleton<CartService>();
-            services.AddSingleton<PaymentService>();
-            services.AddSingleton<SummaryService>();
-            services.AddSingleton<OrderService>();
+            services.AddTransient<UserService>();
+            services.AddTransient<ProductService>();
+            services.AddTransient<CartService>();
+            services.AddTransient<PaymentService>();
+            services.AddTransient<SummaryService>();
+            services.AddTransient<OrderService>();
         }
 
         // Called #2
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-
             ElectroShopDB.Program.Configure(app);
 
             if (env.IsDevelopment())

@@ -14,19 +14,19 @@ namespace ElectroShopDB
                 new TaxRateTable
                 {
                     Id = ConstantTableId.TaxRate.Tax5,
-                    Amount = 0.05,
+                    Percent = 0.05,
                     ProductCategoryId = ConstantTableId.ProductCategory.Ebook
                 },
                 new TaxRateTable
                 {
                     Id = ConstantTableId.TaxRate.Tax8,
-                    Amount = 0.08,
+                    Percent = 0.08,
                     ProductCategoryId = ConstantTableId.ProductCategory.Storage
                 },
                 new TaxRateTable
                 {
                     Id = ConstantTableId.TaxRate.Tax23,
-                    Amount = 0.23,
+                    Percent = 0.23,
                     ProductCategoryId = ConstantTableId.ProductCategory.Others
                 }
             );

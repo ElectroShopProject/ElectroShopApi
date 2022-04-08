@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using ElectroShop;
 using ElectroShopApi.Requests.Cart;
 using ElectroShopApi.Services;
@@ -42,11 +43,11 @@ namespace ElectroShopApi
         // POST /cart/products/add
         [Route("products/add")]
         [HttpPost]
-        public IActionResult AddProduct([FromBody] AddProductToCartRequest request)
+        public async Task<IActionResult> AddProduct([FromBody] AddProductToCartRequest request)
         {
             try
             {
-                Cart cart = _cartService.AddProduct(
+                Cart cart = await _cartService.AddProduct(
                     request.CartId,
                     request.ProductId
                 );
@@ -65,11 +66,11 @@ namespace ElectroShopApi
         // POST /cart/products/remove
         [Route("products/remove")]
         [HttpPost]
-        public IActionResult RemoveProduct([FromBody] RemoveProductFromCartRequest request)
+        public async Task<IActionResult> RemoveProduct([FromBody] RemoveProductFromCartRequest request)
         {
             try
             {
-                Cart cart = _cartService.RemoveProduct(
+                Cart cart = await _cartService.RemoveProduct(
                     request.cartId,
                     request.productId
                 );

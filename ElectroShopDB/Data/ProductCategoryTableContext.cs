@@ -5,9 +5,9 @@ namespace ElectroShopDB
     public class ProductCategoryTableContext : DbContext
     {
 
-        public ProductCategoryTableContext(DbContextOptions<ProductTableContext> options) : base(options) { }
+        public ProductCategoryTableContext(DbContextOptions<ProductCategoryTableContext> options) : base(options) { }
 
-        public DbSet<ProductCategoryTable> TaxRateTable { get; set; }
+        public DbSet<ProductCategoryTable> ProductCategoryTable { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

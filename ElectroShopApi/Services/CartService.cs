@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using ElectroShop;
 
 #nullable enable
@@ -35,7 +36,7 @@ namespace ElectroShopApi.Services
             return GetCart(id)?.Products ?? new List<Product>();
         }
 
-        public Cart AddProduct(Guid cartId, Guid productId)
+        public async Task<Cart> AddProduct(Guid cartId, Guid productId)
         {
             var cart = GetCart(cartId);
             if (cart == null)
@@ -43,12 +44,12 @@ namespace ElectroShopApi.Services
                 throw new NullReferenceException();
             }
 
-            var product = _productService.GetProductAsync(productId);
+            var product = await _productService.GetProduct(productId);
             var updatedCart = AddProductToCartUseCase.Add(cart, product);
             return updatedCart;
         }
 
-        public Cart RemoveProduct(Guid cartId, Guid productId)
+        public async Task<Cart> RemoveProduct(Guid cartId, Guid productId)
         {
             var cart = GetCart(cartId);
             if (cart == null)
@@ -56,7 +57,7 @@ namespace ElectroShopApi.Services
                 throw new NullReferenceException();
             }
 
-            var product = _productService.GetProductAsync(productId);
+            var product = await _productService.GetProduct(productId);
             var updatedCart = RemoveProductFromCartUseCase.Remove(cart, product);
             return updatedCart;
         }

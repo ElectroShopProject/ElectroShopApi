@@ -15,12 +15,14 @@
     <None Remove="Microsoft.EntityFrameworkCore.SqlServer" />
     <None Remove="Microsoft.EntityFrameworkCore.Tools" />
     <None Remove="Microsoft.EntityFrameworkCore.Sqlite" />
+    <None Remove="Mappers\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Requests\" />
     <Folder Include="Requests\Cart\" />
     <Folder Include="Extensions\" />
     <Folder Include="Requests\User\" />
+    <Folder Include="Mappers\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Update="Domain\Summary\GetSummaryUseCase.cs">

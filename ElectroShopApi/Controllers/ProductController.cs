@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using ElectroShopApi.Services;
 using System.Threading.Tasks;
 using System;
 
@@ -7,12 +6,12 @@ namespace ElectroShopApi
 {
     [ApiController]
     [Route("products")]
-    public class ProductsController : ControllerBase
+    public class ProductController : ControllerBase
     {
 
         private readonly ProductService _service;
 
-        public ProductsController(ProductService service)
+        public ProductController(ProductService service)
         {
             _service = service;
         }
