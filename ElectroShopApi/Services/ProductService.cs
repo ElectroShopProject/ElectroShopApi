@@ -43,9 +43,8 @@ namespace ElectroShopApi
 
         public async Task<Product?> GetProduct(Guid productId)
         {
-            // TODO Extract to UC
             var products = await GetProducts();
-            return products.First(product => product.Id == productId);
+            return GetProductUseCase.Get(products, productId);
         }
     }
 }
