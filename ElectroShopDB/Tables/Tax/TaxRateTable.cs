@@ -8,7 +8,6 @@ namespace ElectroShopDB
         public string Id { get; set; }
         [Required]
         public double Percent { get; set; }
-        // Foreign Key
         [Required]
         public string ProductCategoryId { get; set; }
     }
