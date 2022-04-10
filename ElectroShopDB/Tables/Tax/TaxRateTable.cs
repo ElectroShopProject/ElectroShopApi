@@ -1,18 +1,14 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace ElectroShopApi
+namespace ElectroShopDB
 {
     public class TaxRateTable
     {
         [Key]
         public string Id { get; set; }
         [Required]
-        public double Amount { get; set; }
-
+        public double Percent { get; set; }
         // Foreign Key
-        [Required]
-        public string ProductCategoryId { get; set; }
-        // Reference Model
-        public ProductCategoryTable ProductCategoryTable { get; set; }
+        public int ProductCategoryId { get; set; }
     }
 }

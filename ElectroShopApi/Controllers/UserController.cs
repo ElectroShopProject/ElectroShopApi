@@ -33,7 +33,7 @@ namespace ElectroShopApi.Controllers
 
                 return new JsonResult(_userService.CreateUser(request.Name));
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return new StatusCodeResult((int)HttpStatusCode.InternalServerError);
             }

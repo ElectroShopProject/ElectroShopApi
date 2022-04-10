@@ -1,6 +1,6 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace ElectroShopApi.Domain.Payment
+namespace ElectroShop
 {
     [JsonConverter(typeof(JsonStringEnumConverter))]
     public enum PaymentStatus

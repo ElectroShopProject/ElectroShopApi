@@ -1,7 +1,4 @@
-﻿using System;
-using ElectroShopApi.Domain.User;
-
-namespace ElectroShop
+﻿namespace ElectroShop
 {
     public class CreateUserUseCase
     {

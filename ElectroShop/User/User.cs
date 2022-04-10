@@ -1,5 +1,5 @@
 ﻿using System;
-namespace ElectroShopApi.Domain.User
+namespace ElectroShop
 {
     public record User(string Name)
     {

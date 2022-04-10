@@ -1,8 +1,6 @@
-﻿using System;
-using ElectroShopApi.Tables.Product;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 
-namespace ElectroShopDB.Data
+namespace ElectroShopDB
 {
     public class ManufacturerTableContext : DbContext
     {
@@ -12,12 +10,25 @@ namespace ElectroShopDB.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+
             modelBuilder.Entity<ManufacturerTable>().HasData(
                 new ManufacturerTable
                 {
-                    Id = "26c1a403-05a3-4c33-9dd4-41152fb51f8d",
+                    Id = ConstantTableId.Manufacturer.Feder,
                     Name = "Feder",
                     Country = "Poland"
+                },
+                new ManufacturerTable
+                {
+                    Id = ConstantTableId.Manufacturer.Itera,
+                    Name = "Itera",
+                    Country = "Poland"
+                },
+                new ManufacturerTable
+                {
+                    Id = ConstantTableId.Manufacturer.Konemi,
+                    Name = "Konemi",
+                    Country = "Japan"
                 }
             );
         }

@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
-using ElectroShopApi.Domain.CartSummary;
 
-namespace ElectroShopApi.Domain.Summary
+namespace ElectroShop
 {
     public record CartSummary(
         List<SummaryProduct> Products,

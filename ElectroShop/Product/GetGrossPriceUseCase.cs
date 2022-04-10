@@ -1,6 +1,4 @@
-﻿using ElectroShopApi.Domain;
-
-namespace ElectroShopApi
+﻿namespace ElectroShop
 {
     public class GetGrossPriceUseCase
     {

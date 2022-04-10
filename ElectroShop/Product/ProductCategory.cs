@@ -1,12 +1,12 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace ElectroShopApi
+namespace ElectroShop
 {
     [JsonConverter(typeof(JsonStringEnumConverter))]
     public enum ProductCategory
     {
-        Telecommunication,
-        Computers,
+        Ebook,
+        Storage,
         Others
     }
 }

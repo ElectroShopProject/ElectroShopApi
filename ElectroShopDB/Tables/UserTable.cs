@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace ElectroShopApi.Tables
+namespace ElectroShopDB
 {
     public class UserTable
     {

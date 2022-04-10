@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace ElectroShopApi.Domain.Payment
+namespace ElectroShop
 {
     public record PaymentRequirment(
         double Amount,

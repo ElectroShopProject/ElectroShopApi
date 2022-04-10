@@ -1,5 +1,5 @@
 ﻿using System;
-namespace ElectroShopApi
+namespace ElectroShop
 {
     public record PaymentOption(PaymentOptionType Type, bool IsAvailable)
     {

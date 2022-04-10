@@ -1,8 +1,6 @@
 ﻿using System.Linq;
-using ElectroShopApi.Domain.CartSummary;
-using ElectroShopApi.Domain.Summary;
 
-namespace ElectroShopApi
+namespace ElectroShop
 {
     public class GetCartSummaryUseCase
     {

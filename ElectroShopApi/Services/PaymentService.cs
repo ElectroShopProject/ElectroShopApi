@@ -1,6 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using ElectroShopApi.Domain.Payment;
+﻿using System.Collections.Generic;
+using ElectroShop;
 
 namespace ElectroShopApi.Services
 {

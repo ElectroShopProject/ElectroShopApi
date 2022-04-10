@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 
 #nullable enable
-namespace ElectroShopApi
+namespace ElectroShop
 {
     public class GetCartUseCase
     {

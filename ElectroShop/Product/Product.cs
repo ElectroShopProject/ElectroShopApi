@@ -1,5 +1,5 @@
 ﻿using System;
-namespace ElectroShopApi.Domain
+namespace ElectroShop
 {
     public record Product(
         string Name,

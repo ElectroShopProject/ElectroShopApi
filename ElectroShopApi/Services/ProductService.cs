@@ -1,28 +1,51 @@
 ﻿using System;
-using ElectroShopApi.Domain;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using ElectroShop;
+using ElectroShopApi.Mappers;
+using ElectroShopDB;
+using Microsoft.EntityFrameworkCore;
 
-namespace ElectroShopApi.Services
+#nullable enable
+namespace ElectroShopApi
 {
     public class ProductService
     {
+        private readonly ProductTableContext _context;
+        private readonly TaxRateTableContext _taxContext;
+        private readonly ManufacturerTableContext _manufacturerContext;
+        private readonly ProductCategoryTableContext _productContext;
 
-        private readonly Product CurrentProduct = new(
-            Name: "Phone",
-            Category: ProductCategory.Telecommunication,
-            Manufacturer: new Manufacturer(Name: "ABC", Country: "Poland"),
-            NetPrice: 100,
-            GrossPrice: 123,
-            TaxRate: TaxRate.DefaultTax
-        );
-
-        public ProductService()
+        public ProductService(
+            ProductTableContext context,
+            TaxRateTableContext taxContext,
+            ProductCategoryTableContext productContext,
+            ManufacturerTableContext manufacturerContext)
         {
+            _context = context;
+            _taxContext = taxContext;
+            _productContext = productContext;
+            _manufacturerContext = manufacturerContext;
         }
 
-        public Product GetProduct(Guid productId)
+        public async Task<List<Product>> GetProducts()
         {
-            // In future allow more products to select
-            return CurrentProduct;
+            var categorySource = await _productContext.ProductCategoryTable.ToListAsync();
+            var manufacturerSource = await _manufacturerContext.ManufacturerTable.ToListAsync();
+            var taxRateSource = await _taxContext.TaxRateTable.ToListAsync();
+            return _context.ProductTable.Select(table => ProductMapper.Map(
+                table,
+                categorySource,
+                manufacturerSource,
+                taxRateSource)).ToList();
+        }
+
+        public async Task<Product?> GetProduct(Guid productId)
+        {
+            // TODO Extract to UC
+            var products = await GetProducts();
+            return products.First(product => product.Id == productId);
         }
     }
 }
