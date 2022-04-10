@@ -12,12 +12,8 @@ namespace ElectroShopDB
         public double NetPrice { get; set; }
         [Required]
         public double GrossPrice { get; set; }
-
-        // Foreign Key
         [Required]
         public int ProductCategoryId { get; set; }
-
-        // Foreign Key
         [Required]
         public string ManufacturerId { get; set; }
     }

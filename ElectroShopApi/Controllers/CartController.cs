@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 #nullable enable
 namespace ElectroShopApi
 {
+    [ApiController]
     [Route("cart")]
     public class CartController : ControllerBase
     {

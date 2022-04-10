@@ -6,8 +6,9 @@ using RouteAttribute = Microsoft.AspNetCore.Mvc.RouteAttribute;
 
 namespace ElectroShopApi.Controllers
 {
+    [ApiController]
     [Route("user")]
-    public class UserController
+    public class UserController : ControllerBase
     {
         private readonly OrderService _orderService;
         private readonly UserService _userService;
