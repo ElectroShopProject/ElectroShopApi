@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ElectroShopApi.Controllers
 {
+    [ApiController]
     [Route("summary")]
     public class SummaryController : ControllerBase
     {

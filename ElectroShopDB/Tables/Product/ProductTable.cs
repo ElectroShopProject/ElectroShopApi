@@ -16,7 +16,6 @@ namespace ElectroShopDB
         // Foreign Key
         [Required]
         public int ProductCategoryId { get; set; }
-
         // Foreign Key
         [Required]
         public string ManufacturerId { get; set; }
