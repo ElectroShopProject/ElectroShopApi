@@ -12,8 +12,6 @@ namespace ElectroShopDB
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            Console.WriteLine("Seeding products");
-
             modelBuilder.Entity<ProductTable>().HasData(
                 new ProductTable
                 {
@@ -61,8 +59,6 @@ namespace ElectroShopDB
                     ManufacturerId = ConstantTableId.Manufacturer.Itera
                 }
             );
-
-            Console.WriteLine("Seeding products END");
         }
     }
 }

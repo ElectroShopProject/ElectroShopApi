@@ -10,6 +10,7 @@ namespace ElectroShopDB
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+
             modelBuilder.Entity<ManufacturerTable>().HasData(
                 new ManufacturerTable
                 {

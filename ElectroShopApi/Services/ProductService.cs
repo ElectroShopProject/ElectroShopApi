@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using ElectroShop;
-using ElectroShopApi.Extensions;
 using ElectroShopApi.Mappers;
 using ElectroShopDB;
 using Microsoft.EntityFrameworkCore;
@@ -15,59 +14,31 @@ namespace ElectroShopApi
     {
         private readonly ProductTableContext _context;
         private readonly TaxRateTableContext _taxContext;
-        private readonly ManufacturerTableContext _MantaxContext;
+        private readonly ManufacturerTableContext _manufacturerContext;
+        private readonly ProductCategoryTableContext _productContext;
 
-        public ProductService(ProductTableContext context, TaxRateTableContext taxContext, ManufacturerTableContext mantaxContext)
+        public ProductService(
+            ProductTableContext context,
+            TaxRateTableContext taxContext,
+            ProductCategoryTableContext productContext,
+            ManufacturerTableContext manufacturerContext)
         {
             _context = context;
             _taxContext = taxContext;
-            _MantaxContext = mantaxContext;
+            _productContext = productContext;
+            _manufacturerContext = manufacturerContext;
         }
 
         public async Task<List<Product>> GetProducts()
         {
-            var manufs = _MantaxContext.ManufacturerTable.ToList();
-
-            // TODO There are tables
-            Console.WriteLine("Count of manu = " + manufs.Count);
-
-            var taxTables = await _taxContext.TaxRateTable.ToListAsync();
-            var taxes = taxTables.Select(table => new TaxRate(
-                Category: ProductCategoryMapper.Map(table.ProductCategoryTable),
-                Percent: table.Percent
-                )
-            ).ToList();
-
-            // TODO There are NOT tables
-            Console.WriteLine("Count of taxes = " + taxTables.Count);
-
-            // TODO Extract to mapper
-            List<ProductTable> tables = await _context.ProductTable.ToListAsync();
-
-            Console.WriteLine("Count of products = " + tables.Count);
-
-            var products = tables.Select(table =>
-                new Product(
-                    Name: table.Name,
-                    NetPrice: table.NetPrice,
-                    GrossPrice: table.GrossPrice,
-                    Category: Enum.Parse<ProductCategory>(table.ProductCategoryTable.Name),
-                    TaxRate: taxes.Find(tax => Enum.GetName(tax.Category) == table.ProductCategoryTable.Name),
-                    Manufacturer: new Manufacturer(
-                        Name: table.ManufacturerTable.Name,
-                        Country: table.ManufacturerTable.Country)
-                    { Id = table.ManufacturerTable.Id.ToGuid() }
-                )
-                { Id = table.Id.ToGuid() }
-            );
-
-            foreach (var product in products)
-            {
-                // TODO There are NOT tables
-                Console.WriteLine("Products = " + product.Name + " ");
-            }
-
-            return products.ToList();
+            var categorySource = await _productContext.ProductCategoryTable.ToListAsync();
+            var manufacturerSource = await _manufacturerContext.ManufacturerTable.ToListAsync();
+            var taxRateSource = await _taxContext.TaxRateTable.ToListAsync();
+            return _context.ProductTable.Select(table => ProductMapper.Map(
+                table,
+                categorySource,
+                manufacturerSource,
+                taxRateSource)).ToList();
         }
 
         public async Task<Product?> GetProduct(Guid productId)
