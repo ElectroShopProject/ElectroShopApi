@@ -7,7 +7,7 @@ namespace ElectroShopApi.Services
 {
     public class OrderService
     {
-        private readonly HashSet<Order> Orders = new();
+        private static readonly HashSet<Order> Orders = new();
         private readonly CartService _cartService;
         private readonly PaymentService _paymentService;
 

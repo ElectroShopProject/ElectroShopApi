@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using ElectroShop;
 
-namespace ElectroShopApi.Services
+namespace ElectroShopApi
 {
     public class PaymentService
     {

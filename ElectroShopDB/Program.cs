@@ -15,6 +15,7 @@ namespace ElectroShopDB
         {
             services
                 .AddContext<ManufacturerTableContext>()
+                .AddContext<UserTableContext>()
                 .AddContext<ProductCategoryTableContext>()
                 .AddContext<TaxRateTableContext>()
                 .AddContext<ProductTableContext>();
@@ -24,6 +25,7 @@ namespace ElectroShopDB
         {
             app.ApplicationServices
                 .EnsureCreated<ManufacturerTableContext>()
+                .EnsureCreated<UserTableContext>()
                 .EnsureCreated<ProductCategoryTableContext>()
                 .EnsureCreated<TaxRateTableContext>()
                 .EnsureCreated<ProductTableContext>();

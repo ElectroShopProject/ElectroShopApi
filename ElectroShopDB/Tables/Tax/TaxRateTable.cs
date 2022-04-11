@@ -9,6 +9,6 @@ namespace ElectroShopDB
         [Required]
         public double Percent { get; set; }
         [Required]
-        public string ProductCategoryId { get; set; }
+        public int ProductCategoryId { get; set; }
     }
 }

@@ -22,9 +22,9 @@ namespace ElectroShopApi
 
         // POST /cart
         [HttpPost]
-        public IActionResult Post([FromBody] CreateCartRequest request)
+        public async Task<IActionResult> Post([FromBody] CreateCartRequest request)
         {
-            return new JsonResult(_cartService.CreateCart(request.UserId));
+            return new JsonResult(await _cartService.CreateCart(request.UserId));
         }
 
         // GET /cart/id

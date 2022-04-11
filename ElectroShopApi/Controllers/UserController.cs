@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Net;
+using System.Threading.Tasks;
 using ElectroShopApi.Services;
 using Microsoft.AspNetCore.Mvc;
 using RouteAttribute = Microsoft.AspNetCore.Mvc.RouteAttribute;
@@ -22,17 +23,17 @@ namespace ElectroShopApi.Controllers
         // POST /user/login
         [Route("login")]
         [HttpPost]
-        public IActionResult PostLogin([FromBody] LoginUserRequest request)
+        public async Task<IActionResult> PostLogin([FromBody] LoginUserRequest request)
         {
             try
             {
-                var user = _userService.GetUser(request.Name);
+                var user = await _userService.GetUser(request.Name);
                 if (user != null)
                 {
                     return new JsonResult(user);
                 }
 
-                return new JsonResult(_userService.CreateUser(request.Name));
+                return new JsonResult(await _userService.CreateUser(request.Name));
             }
             catch (Exception)
             {

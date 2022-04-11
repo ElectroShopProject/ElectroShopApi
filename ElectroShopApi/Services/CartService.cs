@@ -8,7 +8,7 @@ namespace ElectroShopApi.Services
 {
     public class CartService
     {
-        private readonly HashSet<Cart> Carts = new();
+        private static readonly HashSet<Cart> Carts = new();
         private readonly UserService _userService;
         private readonly ProductService _productService;
 
@@ -23,9 +23,9 @@ namespace ElectroShopApi.Services
             return GetCartUseCase.Get(Carts.Values(), id);
         }
 
-        public Cart CreateCart(Guid userId)
+        public async Task<Cart> CreateCart(Guid userId)
         {
-            var user = _userService.GetUser(userId);
+            var user = await _userService.GetUser(userId);
             var newCart = CreateCartUseCase.Create(Carts.Values(), user);
             Carts.Add(newCart);
             return newCart;

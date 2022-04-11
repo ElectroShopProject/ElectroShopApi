@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using ElectroShop;
+using ElectroShopApi.Extensions;
 using ElectroShopDB;
 
 namespace ElectroShopApi.Mappers
@@ -14,7 +15,7 @@ namespace ElectroShopApi.Mappers
 
             var category = ProductCategoryMapper.Map(foundCategoryTable);
 
-            return new TaxRate(Category: category, Percent: table.Percent);
+            return new TaxRate(Category: category, Percent: table.Percent) with { Id = table.Id.ToGuid() };
         }
     }
 }
