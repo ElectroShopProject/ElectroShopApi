@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using ElectroShop;
 using ElectroShopApi.Extensions;
 using ElectroShopDB;
@@ -16,13 +14,13 @@ namespace ElectroShopApi.Mappers
             List<TaxRateTable> taxRateTables)
         {
             var category = categoryTables
-                .First(category => category.Id == table.ProductCategoryId);
+                .Find(category => category.Id == table.ProductCategoryId);
 
             var manufacturer = manufacturerTables
-                .First(manufacturer => manufacturer.Id == table.ManufacturerId);
+                .Find(manufacturer => manufacturer.Id == table.ManufacturerId);
 
             var taxRate = taxRateTables
-                .First(tax => tax.ProductCategoryId == table.ProductCategoryId);
+                .Find(tax => tax.ProductCategoryId == table.ProductCategoryId);
 
             return new Product(
                 Name: table.Name,
