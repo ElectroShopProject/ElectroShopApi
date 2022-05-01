@@ -12,6 +12,7 @@
     <None Remove="Microsoft.EntityFrameworkCore.InMemory" />
     <None Remove="Extensions\" />
     <None Remove="Tables\User\" />
+    <None Remove="Tables\Order\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.15" />
@@ -21,5 +22,6 @@
   <ItemGroup>
     <Folder Include="Extensions\" />
     <Folder Include="Tables\User\" />
+    <Folder Include="Tables\Order\" />
   </ItemGroup>
 </Project>
