@@ -2,7 +2,7 @@
 
 namespace ElectroShopDB
 {
-    public class OrderedProduct
+    public class OrderedProductTable
     {
         [Key]
         public string OrderId { get; set; }
