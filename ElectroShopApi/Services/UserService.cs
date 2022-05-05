@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using ElectroShop;
@@ -28,9 +29,7 @@ namespace ElectroShopApi
 
         public async Task<User?> GetUser(string name)
         {
-            var users = await _context.UserTable
-                .Select(table => UserMapper.Map(table)).ToListAsync();
-
+            var users = await GetUsers();
             return GetUserWithNameUseCase.Get(users, name);
         }
 
@@ -48,6 +47,12 @@ namespace ElectroShopApi
             }
 
             return newUser;
+        }
+
+        public async Task<List<User>> GetUsers()
+        {
+            return await _context.UserTable
+                .Select(table => UserMapper.Map(table)).ToListAsync();
         }
     }
 }

@@ -48,7 +48,7 @@ namespace ElectroShopApi.Controllers
         {
             try
             {
-                var orders = _orderService.GetOrders(userId);
+                var orders = _orderService.GetOrdersAsync(userId);
                 return new JsonResult(orders);
             }
             catch (NullReferenceException)
