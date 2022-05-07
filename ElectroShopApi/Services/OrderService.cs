@@ -50,24 +50,28 @@ namespace ElectroShopApi.Services
         public async Task<List<Order>> GetOrders()
         {
             var users = await _userService.GetUsers();
+            // TODO Correct getting payment with ID
             var payments = _paymentService.GetPayments();
 
             var orderTables = await _orderContext
                 .OrderTable
                 .ToListAsync();
 
+            // TODO Ordered products are not saved and null here
             var orderedProductTables = await _orderedProductsContext
                 .OrderedProductTable
                 .ToListAsync();
 
-            var productTables = await _productService.GetProducts();
+            Console.WriteLine($"orderedProductTables {orderedProductTables}");
+
+            var products = await _productService.GetProducts();
 
             var orders = orderTables.Select(order => OrderMapper.Map(
-                table: order,
+                order: order,
                 orderedProducts: orderedProductTables,
                 users: users,
                 payments: payments,
-                products: productTables)).ToList();
+                products: products)).ToList();
 
             return orders;
         }
@@ -75,8 +79,8 @@ namespace ElectroShopApi.Services
         public async Task<Order> CreateOrder(Guid cartId, PaymentOptionType paymentType)
         {
             var orders = await GetOrders();
-            var foundOrder = orders.Find(order => order.CartId == cartId);
 
+            var foundOrder = orders.Find(order => order.CartId == cartId);
             if (foundOrder != null)
             {
                 return foundOrder;
@@ -95,16 +99,23 @@ namespace ElectroShopApi.Services
             }
 
             var payment = _paymentService.GetPayment(summary.GrossTotal, paymentType);
-            var user = cart.User;
-            var order = new Order(cart.Id, user, payment, Products: cart.Products);
-
+            var order = new Order(
+                CartId: cart.Id,
+                User: cart.User,
+                Payment: payment,
+                Products: cart.Products);
 
             var orderTable = OrderMapper.Map(order);
-            var orderedProducts = orders
-                .SelectMany(order => OrderedProductMapper.Map(order));
-
             await _orderContext.AddAsync(orderTable);
+            await _orderContext.SaveChangesAsync();
+
+            // TODO Check results of the operations!
+            var orderedProducts = orders
+                .SelectMany(order => OrderedProductMapper.Map(order))
+                .ToList();
+            Console.WriteLine($"Order products to store {orderedProducts}");
             await _orderedProductsContext.AddRangeAsync(orderedProducts);
+            await _orderedProductsContext.SaveChangesAsync();
 
             return order;
         }

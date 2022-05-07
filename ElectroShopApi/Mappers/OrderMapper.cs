@@ -5,24 +5,27 @@ using ElectroShop;
 using ElectroShopApi.Extensions;
 using ElectroShopDB;
 
+#nullable enable
 namespace ElectroShopApi.Mappers
 {
     public class OrderMapper
     {
         public static Order Map(
-            OrderTable table,
+            OrderTable order,
             List<OrderedProductTable> orderedProducts,
             List<User> users,
             List<Payment> payments,
             List<Product> products)
         {
-            var user = users.Find(user => user.Id == table.UserId.ToGuid());
-            var payment = payments.Find(payment => payment.Id == table.PaymentId.ToGuid());
-            var orderProducts = orderedProducts.Where(product => product.OrderId == table.Id);
-            var foundProducts = orderProducts.Select(orderProduct => products.First(product => product.Id == orderProduct.ProductId.ToGuid())).ToList();
+            var user = users.Find(user => user.Id == order.UserId.ToGuid());
+            var payment = payments.Find(payment => payment.Id == order.PaymentId.ToGuid());
+            var orderProducts = orderedProducts.Where(product => product.OrderId == order.Id);
+            var foundProducts = orderProducts
+                .Select(orderProduct => products.First(product => product.Id == orderProduct.ProductId.ToGuid()))
+                .ToList();
 
             return new Order(
-                CartId: table.CartId.ToGuid(),
+                CartId: order.CartId.ToGuid(),
                 User: user,
                 Payment: payment,
                 Products: foundProducts);

@@ -17,6 +17,7 @@ namespace ElectroShopApi
 
         public Payment GetPayment(double amount, PaymentOptionType type)
         {
+            // TODO Save to DB
             return CreatePaymentUseCase.Create(amount, type);
         }
 

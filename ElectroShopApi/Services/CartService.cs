@@ -45,6 +45,11 @@ namespace ElectroShopApi.Services
             }
 
             var product = await _productService.GetProduct(productId);
+            if (product == null)
+            {
+                throw new NullReferenceException();
+            }
+
             var updatedCart = AddProductToCartUseCase.Add(cart, product);
             return updatedCart;
         }
