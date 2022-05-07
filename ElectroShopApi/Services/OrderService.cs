@@ -62,7 +62,7 @@ namespace ElectroShopApi.Services
                 .OrderedProductTable
                 .ToListAsync();
 
-            Console.WriteLine($"orderedProductTables {orderedProductTables}");
+            Console.WriteLine($"orderedProductTables {orderedProductTables.Count}");
 
             var products = await _productService.GetProducts();
 
@@ -109,13 +109,17 @@ namespace ElectroShopApi.Services
             await _orderContext.AddAsync(orderTable);
             await _orderContext.SaveChangesAsync();
 
+            Console.WriteLine($"Products {order.Products.Count}");
+
             // TODO Check results of the operations!
             var orderedProducts = orders
                 .SelectMany(order => OrderedProductMapper.Map(order))
                 .ToList();
-            Console.WriteLine($"Order products to store {orderedProducts}");
+            Console.WriteLine($"Order products to store {orderedProducts.Count}");
             await _orderedProductsContext.AddRangeAsync(orderedProducts);
-            await _orderedProductsContext.SaveChangesAsync();
+            var saveResult = await _orderedProductsContext.SaveChangesAsync();
+
+            Console.WriteLine($"Written ordered products to DB = {saveResult}");
 
             return order;
         }
