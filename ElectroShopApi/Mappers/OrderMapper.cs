@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using ElectroShop;
 using ElectroShopApi.Extensions;
@@ -25,6 +26,38 @@ namespace ElectroShopApi.Mappers
                 User: user,
                 Payment: payment,
                 Products: foundProducts);
+        }
+
+        public static OrderTable Map(Order order)
+        {
+            return new OrderTable
+            {
+                Id = order.Id.ToString(),
+                CartId = order.CartId.ToString(),
+                UserId = order.User.Id.ToString(),
+                PaymentId = order.Payment.Id.ToString()
+            };
+        }
+
+        // TODO This logic should be on the frontend
+        private static String GetOrderName(Order order)
+        {
+            if (order.Products.Count <= 0)
+            {
+                return $"Order No {order.Id}";
+            }
+
+            var productGroups = order.Products.GroupBy(product => product.Id);
+            var firstGroup = productGroups.First();
+            var count = firstGroup.Count();
+            var name = firstGroup.First().Name;
+
+            if (productGroups.Count() == 1)
+            {
+                return $"{count} x {name}";
+            }
+
+            return $"{count} x {name} and more";
         }
     }
 }

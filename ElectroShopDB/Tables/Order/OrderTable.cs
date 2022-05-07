@@ -7,8 +7,6 @@ namespace ElectroShopDB
         [Key]
         public string Id { get; set; }
         [Required]
-        public string Name { get; set; }
-        [Required]
         public string CartId { get; set; }
         [Required]
         public string UserId { get; set; }
