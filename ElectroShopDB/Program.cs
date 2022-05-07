@@ -18,7 +18,9 @@ namespace ElectroShopDB
                 .AddContext<UserTableContext>()
                 .AddContext<ProductCategoryTableContext>()
                 .AddContext<TaxRateTableContext>()
-                .AddContext<ProductTableContext>();
+                .AddContext<ProductTableContext>()
+                .AddContext<OrderedProductTableContext>()
+                .AddContext<OrderTableContext>();
         }
 
         public static void Configure(IApplicationBuilder app)
@@ -28,7 +30,9 @@ namespace ElectroShopDB
                 .EnsureCreated<UserTableContext>()
                 .EnsureCreated<ProductCategoryTableContext>()
                 .EnsureCreated<TaxRateTableContext>()
-                .EnsureCreated<ProductTableContext>();
+                .EnsureCreated<ProductTableContext>()
+                .EnsureCreated<OrderedProductTableContext>()
+                .EnsureCreated<OrderTableContext>();
         }
     }
 }

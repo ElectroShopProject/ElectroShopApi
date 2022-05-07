@@ -24,23 +24,30 @@ namespace ElectroShopApi.Services
             PaymentService paymentService,
             ProductService productService,
             OrderedProductTableContext orderedProductsContext,
-            OrderTableContext orderContext)
+            OrderTableContext orderContext,
+            UserService userService)
         {
             _cartService = cartService;
             _paymentService = paymentService;
             _productService = productService;
             _orderedProductsContext = orderedProductsContext;
             _orderContext = orderContext;
+            _userService = userService;
         }
 
         public async Task<Order?> GetOrder(Guid orderId)
         {
-
             var orders = await GetOrders();
             return GetOrderUseCase.Get(orders, orderId);
         }
 
         public async Task<List<Order>> GetOrders(Guid userId)
+        {
+            var orders = await GetOrders();
+            return GetUserOrdersUseCase.Get(orders, userId);
+        }
+
+        public async Task<List<Order>> GetOrders()
         {
             var users = await _userService.GetUsers();
             var payments = _paymentService.GetPayments();
@@ -62,12 +69,14 @@ namespace ElectroShopApi.Services
                 payments: payments,
                 products: productTables)).ToList();
 
-            return GetUserOrdersUseCase.Get(orders, userId);
+            return orders;
         }
 
-        public Order CreateOrder(Guid cartId, PaymentOptionType paymentType)
+        public async Task<Order> CreateOrder(Guid cartId, PaymentOptionType paymentType)
         {
-            var foundOrder = Orders.Values().Find(order => order.CartId == cartId);
+            var orders = await GetOrders();
+            var foundOrder = orders.Find(order => order.CartId == cartId);
+
             if (foundOrder != null)
             {
                 return foundOrder;
@@ -89,7 +98,14 @@ namespace ElectroShopApi.Services
             var user = cart.User;
             var order = new Order(cart.Id, user, payment, Products: cart.Products);
 
-            Orders.Add(order);
+
+            var orderTable = OrderMapper.Map(order);
+            var orderedProducts = orders
+                .SelectMany(order => OrderedProductMapper.Map(order));
+
+            await _orderContext.AddAsync(orderTable);
+            await _orderedProductsContext.AddRangeAsync(orderedProducts);
+
             return order;
         }
     }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Net;
+using System.Threading.Tasks;
 using ElectroShopApi.Requests.Cart;
 using Microsoft.AspNetCore.Mvc;
 
@@ -58,11 +59,11 @@ namespace ElectroShopApi.Controllers
         // POST /summary/payment
         [Route("payment")]
         [HttpPost]
-        public IActionResult PostPayment([FromBody] CartPaymentRequest request)
+        public async Task<IActionResult> PostPayment([FromBody] CartPaymentRequest request)
         {
             try
             {
-                var order = _summaryService.FinalizeCart(
+                var order = await _summaryService.FinalizeCart(
                     request.CartId,
                     request.PaymentOptionType
                 );
