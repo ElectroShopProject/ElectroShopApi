@@ -21,7 +21,7 @@ namespace ElectroShopApi.Mappers
             var payment = payments.Find(payment => payment.Id == order.PaymentId.ToGuid());
             var orderProducts = orderedProducts.Where(product => product.OrderId == order.Id);
             var foundProducts = orderProducts
-                .Select(orderProduct => products.First(product => product.Id == orderProduct.ProductId.ToGuid()))
+                .SelectMany(orderProduct => GetProducts(products, orderProduct))
                 .ToList();
 
             return new Order(
@@ -40,6 +40,18 @@ namespace ElectroShopApi.Mappers
                 UserId = order.User.Id.ToString(),
                 PaymentId = order.Payment.Id.ToString()
             };
+        }
+
+        private static List<Product> GetProducts(List<Product> products, OrderedProductTable table)
+        {
+            List<Product> countedProducts = new();
+
+            for (int i = 0; i < table.Quantity; i++)
+            {
+                countedProducts.Add(products.First(product => product.Id == table.ProductId.ToGuid()));
+            }
+
+            return countedProducts;
         }
 
         // TODO This logic should be on the frontend
