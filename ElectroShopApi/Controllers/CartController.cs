@@ -34,7 +34,7 @@ namespace ElectroShopApi
             return new JsonResult(_cartService.GetCart(id));
         }
 
-        // POST /cart/id/products
+        // GET /cart/id/products
         [HttpGet("{id}/products")]
         public IActionResult GetProducts(Guid id)
         {

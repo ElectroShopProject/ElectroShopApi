@@ -44,11 +44,11 @@ namespace ElectroShopApi.Controllers
         // GET /user/orders
         [Route("orders")]
         [HttpGet]
-        public IActionResult GetOrders([FromQuery] Guid userId)
+        public async Task<IActionResult> GetOrders([FromQuery] Guid userId)
         {
             try
             {
-                var orders = _orderService.GetOrders(userId);
+                var orders = await _orderService.GetOrders(userId);
                 return new JsonResult(orders);
             }
             catch (NullReferenceException)

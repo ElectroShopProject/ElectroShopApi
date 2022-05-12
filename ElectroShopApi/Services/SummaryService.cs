@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using ElectroShop;
 using ElectroShopApi.Services;
 
@@ -46,9 +47,9 @@ namespace ElectroShopApi
             return GetPaymentRequirmentUseCase.Get(summary, options);
         }
 
-        public Order FinalizeCart(Guid cartId, PaymentOptionType paymentType)
+        public async Task<Order> FinalizeCart(Guid cartId, PaymentOptionType paymentType)
         {
-            var order = _orderService.CreateOrder(cartId, paymentType);
+            var order = await _orderService.CreateOrder(cartId, paymentType);
             _cartService.DeleteCart(cartId);
             return order;
         }

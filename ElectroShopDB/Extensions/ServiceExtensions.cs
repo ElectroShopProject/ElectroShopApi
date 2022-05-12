@@ -21,6 +21,7 @@ namespace ElectroShopDB
             using (var serviceScope = provider.CreateScope())
             {
                 var context = serviceScope.ServiceProvider.GetService<T>();
+                context.Database.EnsureDeleted();
                 var result = context.Database.EnsureCreated();
 
                 Console.Write("For " + typeof(T).FullName);
