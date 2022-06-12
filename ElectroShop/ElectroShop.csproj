@@ -1,27 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
-
-  <PropertyGroup>
-    <TargetFramework>net5.0</TargetFramework>
-  </PropertyGroup>
-
-  <ItemGroup>
-    <None Remove="Cart\" />
-    <None Remove="CartSummary\" />
-    <None Remove="Order\" />
-    <None Remove="Payment\" />
-    <None Remove="Product\" />
-    <None Remove="Tax\" />
-    <None Remove="User\" />
-    <None Remove="Microsoft.AspNetCore" />
-    <None Remove="Microsoft.SqlServer.Compact" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Cart\" />
-    <Folder Include="CartSummary\" />
-    <Folder Include="Order\" />
-    <Folder Include="Payment\" />
-    <Folder Include="Product\" />
-    <Folder Include="Tax\" />
-    <Folder Include="User\" />
-  </ItemGroup>
+	<PropertyGroup>
+		<TargetFramework>net5.0</TargetFramework>
+		<RuntimeIdentifiers>win10-x64;linux-x64</RuntimeIdentifiers>
+	</PropertyGroup>
+	<ItemGroup>
+		<None Remove="Cart\" />
+		<None Remove="CartSummary\" />
+		<None Remove="Order\" />
+		<None Remove="Payment\" />
+		<None Remove="Product\" />
+		<None Remove="Tax\" />
+		<None Remove="User\" />
+		<None Remove="Microsoft.AspNetCore" />
+		<None Remove="Microsoft.SqlServer.Compact" />
+	</ItemGroup>
+	<ItemGroup>
+		<Folder Include="Cart\" />
+		<Folder Include="CartSummary\" />
+		<Folder Include="Order\" />
+		<Folder Include="Payment\" />
+		<Folder Include="Product\" />
+		<Folder Include="Tax\" />
+		<Folder Include="User\" />
+	</ItemGroup>
 </Project>

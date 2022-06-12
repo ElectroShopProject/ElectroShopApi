@@ -1,45 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <Project Sdk="Microsoft.NET.Sdk.Web">
-
-  <PropertyGroup>
-    <TargetFramework>net5.0</TargetFramework>
-  </PropertyGroup>
-
-  <ItemGroup>
-    <None Remove="Requests\" />
-    <None Remove="Requests\Cart\" />
-    <None Remove="Extensions\" />
-    <None Remove="Domain\Summary\" />
-    <None Remove="Requests\User\" />
-    <None Remove="Microsoft.SqlServer.Compact" />
-    <None Remove="Microsoft.VisualStudio.Web.CodeGeneration.Design" />
-    <None Remove="Microsoft.EntityFrameworkCore.SqlServer" />
-    <None Remove="Microsoft.EntityFrameworkCore.Tools" />
-    <None Remove="Microsoft.EntityFrameworkCore.Sqlite" />
-    <None Remove="Mappers\" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Requests\" />
-    <Folder Include="Requests\Cart\" />
-    <Folder Include="Extensions\" />
-    <Folder Include="Requests\User\" />
-    <Folder Include="Mappers\" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Update="Domain\Summary\GetSummaryUseCase.cs">
-      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\ElectroShop\ElectroShop.csproj">
-      <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
-    </ProjectReference>
-    <ProjectReference Include="..\ElectroShopDB\ElectroShopDB.csproj">
-      <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="5.0.2" />
-  </ItemGroup>
+	<PropertyGroup>
+		<TargetFramework>net5.0</TargetFramework>
+		<RuntimeIdentifiers>win10-x64;linux-x64</RuntimeIdentifiers>
+	</PropertyGroup>
+	<ItemGroup>
+		<None Remove="Requests\" />
+		<None Remove="Requests\Cart\" />
+		<None Remove="Extensions\" />
+		<None Remove="Domain\Summary\" />
+		<None Remove="Requests\User\" />
+		<None Remove="Microsoft.SqlServer.Compact" />
+		<None Remove="Microsoft.VisualStudio.Web.CodeGeneration.Design" />
+		<None Remove="Microsoft.EntityFrameworkCore.SqlServer" />
+		<None Remove="Microsoft.EntityFrameworkCore.Tools" />
+		<None Remove="Microsoft.EntityFrameworkCore.Sqlite" />
+		<None Remove="Mappers\" />
+	</ItemGroup>
+	<ItemGroup>
+		<Folder Include="Requests\" />
+		<Folder Include="Requests\Cart\" />
+		<Folder Include="Extensions\" />
+		<Folder Include="Requests\User\" />
+		<Folder Include="Mappers\" />
+	</ItemGroup>
+	<ItemGroup>
+		<Compile Update="Domain\Summary\GetSummaryUseCase.cs">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</Compile>
+	</ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\ElectroShop\ElectroShop.csproj">
+			<GlobalPropertiesToRemove>
+			</GlobalPropertiesToRemove>
+		</ProjectReference>
+		<ProjectReference Include="..\ElectroShopDB\ElectroShopDB.csproj">
+			<GlobalPropertiesToRemove>
+			</GlobalPropertiesToRemove>
+		</ProjectReference>
+	</ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="5.0.2" />
+	</ItemGroup>
 </Project>
