@@ -22,7 +22,7 @@
       "dotnetRunMessages": "true",
       "launchBrowser": true,
       "launchUrl": "products",
-      "applicationUrl": "https://localhost:5001;http://localhost:5000;https://electroshopapi.herokuapp.com:50012;http://electroshopapi.herokuapp.com:50011",
+      "applicationUrl": "https://localhost:5001;http://localhost:5000;https://electroshopapi.herokuapp.com:50013;http://electroshopapi.herokuapp.com:50012;https://electroshopapi.herokuapp.com",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
