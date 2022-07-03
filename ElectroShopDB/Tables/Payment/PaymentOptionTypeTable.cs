@@ -2,7 +2,7 @@
 
 namespace ElectroShopDB
 {
-    public class PaymentOptionType
+    public class PaymentOptionTypeTable
     {
         [Key]
         public string Id { get; set; }

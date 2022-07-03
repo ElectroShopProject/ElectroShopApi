@@ -9,8 +9,8 @@ namespace ElectroShopDB
         [Required]
         public double Amount { get; set; }
         [Required]
-        public int PaymentStatusId { get; set; }
+        public string PaymentStatusId { get; set; }
         [Required]
-        public int PaymentOptionTypeId { get; set; }
+        public string PaymentOptionTypeId { get; set; }
     }
 }

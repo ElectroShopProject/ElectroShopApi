@@ -1,19 +1,18 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using ElectroShop;
+using ElectroShopApi.Mappers;
+using ElectroShopDB;
+using Microsoft.EntityFrameworkCore;
 
 namespace ElectroShopApi
 {
     public class PaymentService
     {
-
-        private readonly List<PaymentOption> PaymentOptionList = new()
-        {
-            new PaymentOption(PaymentOptionType.CreditCard, IsAvailable: true),
-            new PaymentOption(PaymentOptionType.BankTransfer, IsAvailable: true),
-            new PaymentOption(PaymentOptionType.PayPal, IsAvailable: true),
-            new PaymentOption(PaymentOptionType.Cash, IsAvailable: false)
-        };
+        private readonly PaymentTableContext _context;
+        private readonly PaymentOptionTypeTableContext _optionTypeTableContext;
+        private readonly PaymentStatusTableContext _paymentStatusTableContext;
 
         public Payment GetPayment(double amount, PaymentOptionType type)
         {
@@ -21,15 +20,32 @@ namespace ElectroShopApi
             return CreatePaymentUseCase.Create(amount, type);
         }
 
-        public List<PaymentOption> GetPaymentOptions()
+        public async Task<List<PaymentOption>> GetPaymentOptions()
         {
-            return PaymentOptionList;
+            var paymentOptionTypes = await _optionTypeTableContext
+                .PaymentOptionTypeTable
+                .ToListAsync();
+
+            return await _optionTypeTableContext
+                .PaymentOptionTypeTable
+                .Select(table => PaymentOptionMapper.Map(table))
+                .ToListAsync();
         }
 
-        public List<Payment> GetPayments()
+        public async Task<List<Payment>> GetPayments()
         {
-            // TODO Replace this with call to the DB
-            return PaymentOptionList.Select(option => new Payment(Amount: 100, PaymentStatus: PaymentStatus.Progress, Type: option.Type)).ToList();
+            var paymentOptions = await _optionTypeTableContext
+                .PaymentOptionTypeTable
+                .ToListAsync();
+
+            var paymentStatuses = await _paymentStatusTableContext
+                 .PaymentStatusTable
+                 .ToListAsync();
+
+            return await _context
+                .PaymentTable
+                .Select(table => PaymentMapper.Map(table, paymentOptions, paymentStatuses))
+                .ToListAsync();
         }
     }
 }
