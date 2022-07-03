@@ -50,8 +50,7 @@ namespace ElectroShopApi.Services
         public async Task<List<Order>> GetOrders()
         {
             var users = await _userService.GetUsers();
-            // TODO Correct getting payment with ID
-            var payments = _paymentService.GetPayments();
+            var payments = await _paymentService.GetPayments();
 
             var orderTables = await _orderContext
                 .OrderTable
@@ -95,7 +94,9 @@ namespace ElectroShopApi.Services
                 throw new NullReferenceException();
             }
 
-            var payment = _paymentService.GetPayment(summary.GrossTotal, paymentType);
+            var payment = await _paymentService
+                .GetPayment(summary.GrossTotal, paymentType);
+
             var order = new Order(
                 CartId: cart.Id,
                 User: cart.User,
