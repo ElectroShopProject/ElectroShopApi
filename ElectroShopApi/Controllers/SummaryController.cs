@@ -39,11 +39,11 @@ namespace ElectroShopApi.Controllers
         // POST /summary/completion
         [Route("completion")]
         [HttpPost]
-        public IActionResult PostCompletion([FromBody] CompleteCartRequest request)
+        public async Task<IActionResult> PostCompletion([FromBody] CompleteCartRequest request)
         {
             try
             {
-                var paymentRequirment = _summaryService.GetPaymentRequirment(request.CartId);
+                var paymentRequirment = await _summaryService.GetPaymentRequirment(request.CartId);
                 return new JsonResult(paymentRequirment);
             }
             catch (NullReferenceException)

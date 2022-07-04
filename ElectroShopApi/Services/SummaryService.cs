@@ -35,7 +35,7 @@ namespace ElectroShopApi
             return GetCartSummaryUseCase.Get(cart);
         }
 
-        public PaymentRequirment GetPaymentRequirment(Guid cartId)
+        public async Task<PaymentRequirment> GetPaymentRequirment(Guid cartId)
         {
             var summary = GetCartSummary(cartId);
             if (summary == null)
@@ -43,7 +43,7 @@ namespace ElectroShopApi
                 throw new NullReferenceException();
             }
 
-            var options = _paymentService.GetPaymentOptions();
+            var options = await _paymentService.GetPaymentOptions();
             return GetPaymentRequirmentUseCase.Get(summary, options);
         }
 

@@ -20,6 +20,9 @@ namespace ElectroShopDB
                 .AddContext<TaxRateTableContext>()
                 .AddContext<ProductTableContext>()
                 .AddContext<OrderedProductTableContext>()
+                .AddContext<PaymentOptionTypeTableContext>()
+                .AddContext<PaymentStatusTableContext>()
+                .AddContext<PaymentTableContext>()
                 .AddContext<OrderTableContext>();
         }
 
@@ -32,6 +35,9 @@ namespace ElectroShopDB
                 .EnsureCreated<TaxRateTableContext>()
                 .EnsureCreated<ProductTableContext>()
                 .EnsureCreated<OrderedProductTableContext>()
+                .EnsureCreated<PaymentOptionTypeTableContext>()
+                .EnsureCreated<PaymentStatusTableContext>()
+                .EnsureCreated<PaymentTableContext>()
                 .EnsureCreated<OrderTableContext>();
         }
     }
