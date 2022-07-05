@@ -22,6 +22,15 @@ namespace ElectroShopApi
         public void ConfigureServices(IServiceCollection services)
         {
             ElectroShopDB.Program.ConfigureServices(services);
+            services.AddCors(options =>
+            {
+                options.AddPolicy(
+                 "AllowOrigin",
+                 builder => builder
+                    .AllowAnyOrigin()
+                    .AllowAnyHeader()
+                    .AllowAnyMethod());
+            });
             services.AddControllers();
             services.AddTransient<UserService>();
             services.AddTransient<ProductService>();
@@ -45,6 +54,13 @@ namespace ElectroShopApi
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseCors(x =>
+            {
+                x.AllowAnyOrigin()
+                 .AllowAnyMethod()
+                 .AllowAnyHeader();
+            });
 
             app.UseAuthorization();
 
