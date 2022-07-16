@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.OpenApi.Models;
 
 #nullable enable
 namespace ElectroShopApi
@@ -31,6 +32,10 @@ namespace ElectroShopApi
                     .AllowAnyHeader()
                     .AllowAnyMethod());
             });
+            services.AddSwaggerGen(c =>
+             {
+                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "ElectroShopApi", Version = "v1" });
+             });
             services.AddControllers();
             services.AddTransient<UserService>();
             services.AddTransient<ProductService>();
@@ -49,6 +54,13 @@ namespace ElectroShopApi
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                // middleware Swagger JSON
+                app.UseSwagger();
+                // middleware swagger-ui (HTML, JS, CSS, etc.),
+                app.UseSwaggerUI(c =>
+                {
+                    c.SwaggerEndpoint("/swagger/v1/swagger.json", "ElectroShopApi v1");
+                });
             }
 
             app.UseHttpsRedirection();

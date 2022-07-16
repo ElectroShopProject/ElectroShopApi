@@ -41,6 +41,12 @@ namespace ElectroShopApi
                 taxRateSource)).ToList();
         }
 
+        public async Task<List<ProductCategory>> GetProductsCategories()
+        {
+            var categorySource = await _productContext.ProductCategoryTable.ToListAsync();
+            return categorySource.Select(category => ProductCategoryMapper.Map(category)).ToList();
+        }
+
         public async Task<Product?> GetProduct(Guid productId)
         {
             var products = await GetProducts();

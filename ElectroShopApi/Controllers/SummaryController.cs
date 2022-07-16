@@ -74,5 +74,25 @@ namespace ElectroShopApi.Controllers
                 return new StatusCodeResult((int)HttpStatusCode.InternalServerError);
             }
         }
+
+        // POST /summary/payment/options
+        [Route("payment/options")]
+        [HttpPost]
+        public async Task<IActionResult> GetPaymentOptions()
+        {
+            try
+            {
+                var paymentOptions = await _summaryService.GetPaymentOptions();
+                return new JsonResult(paymentOptions);
+            }
+            catch (NullReferenceException)
+            {
+                return new NotFoundObjectResult("There is no cart with this ID");
+            }
+            catch (Exception)
+            {
+                return new StatusCodeResult((int)HttpStatusCode.InternalServerError);
+            }
+        }
     }
 }
