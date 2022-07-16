@@ -18,6 +18,11 @@
 		<None Remove="Microsoft.EntityFrameworkCore.Sqlite" />
 		<None Remove="Mappers\" />
 		<None Remove="Microsoft.AspNetCore.Cors" />
+		<None Remove="Swashbuckle.AspNetCore.Swagger" />
+		<None Remove="Swashbuckle.AspNetCore.SwaggerGen" />
+		<None Remove="Swashbuckle.AspNetCore.SwaggerUI" />
+		<None Remove="Swagger" />
+		<None Remove="Swashbuckle.AspNetCore" />
 	</ItemGroup>
 	<ItemGroup>
 		<Folder Include="Requests\" />
@@ -46,5 +51,7 @@
 	<ItemGroup>
 		<PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="5.0.2" />
 		<PackageReference Include="Microsoft.AspNetCore.Cors" Version="2.2.0" />
+		<PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" Version="6.3.2" />
+		<PackageReference Include="Swashbuckle.AspNetCore.SwaggerUI" Version="6.3.2" />
 	</ItemGroup>
 </Project>

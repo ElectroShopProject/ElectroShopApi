@@ -34,5 +34,25 @@ namespace ElectroShopApi
                 return new BadRequestResult();
             }
         }
+
+        // GET /products/categories
+        [Route("categories")]
+        [HttpGet]
+        public async Task<IActionResult> GetProductsCategories()
+        {
+            try
+            {
+                var products = await _service.GetProductsCategories();
+                return new JsonResult(products);
+            }
+            catch (NullReferenceException)
+            {
+                return new NotFoundResult();
+            }
+            catch
+            {
+                return new BadRequestResult();
+            }
+        }
     }
 }
