@@ -51,7 +51,7 @@ namespace ElectroShopApi
         {
             ElectroShopDB.Program.Configure(app);
 
-            if (env.IsDevelopment())
+            if (env.IsDevelopment() || env.IsProduction())
             {
                 app.UseDeveloperExceptionPage();
                 // middleware Swagger JSON
