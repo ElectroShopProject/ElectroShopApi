@@ -1,6 +1,8 @@
-# ElectroShopApi
+<p align="center">
+ <img width="300" src="https://user-images.githubusercontent.com/8405055/179391281-3478a798-2f1a-4d55-b994-fa3574ab0fd8.png" /> API 
+ </p>
 
-![logo](https://user-images.githubusercontent.com/8405055/179391281-3478a798-2f1a-4d55-b994-fa3574ab0fd8.png)
+# ElectroShopApi
 
 The minimal API for online shop with pre-seeded values. The shop allows to order different electronic devices, taking into consideration various tax rates.
 
