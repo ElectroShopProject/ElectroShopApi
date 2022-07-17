@@ -1,5 +1,7 @@
 # ElectroShopApi
 
+![logo](https://user-images.githubusercontent.com/8405055/179391281-3478a798-2f1a-4d55-b994-fa3574ab0fd8.png)
+
 The minimal API for online shop with pre-seeded values. The shop allows to order different electronic devices, taking into consideration various tax rates.
 
 **Try it -> https://electroshopapi.herokuapp.com/swagger**
